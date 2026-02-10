@@ -28,7 +28,7 @@ Isso resulta em código mais limpo, mais flexível e menos acoplado a implementa
 
 O Spring suporta três formas principais de injeção:
 
-### 1️⃣ Injeção por Construtor (Recomendada)
+### 1. Injeção por Construtor (Recomendada)
 
 ```java
 @Service
@@ -42,19 +42,17 @@ public class PedidoService {
 }
 ```
 
-Vantagens:
+**Vantagens:**
 
-Garante imutabilidade das dependências.
+- Garante imutabilidade das dependências.
+- Permite validação explícita no construtor.
+- Facilita testes unitários.
+- Torna as dependências obrigatórias explícitas.
+- É a forma recomendada pela documentação oficial do Spring.
 
-Permite validação explícita no construtor.
+---
 
-Facilita testes unitários.
-
-Torna as dependências obrigatórias explícitas.
-
-É a forma recomendada pela documentação oficial do Spring.
-
-2️⃣ Injeção por Setter
+### 2. Injeção por Setter
 
 ```java
 @Component
@@ -69,13 +67,14 @@ public class NotificacaoService {
 }
 ```
 
-Uso típico:
+**Uso típico:**
 
-Dependências opcionais.
+- Dependências opcionais.
+- Cenários em que a dependência pode ser alterada após a construção.
 
-Cenários em que a dependência pode ser alterada após a construção.
+---
 
-3️⃣ Injeção por Campo (Desencorajada)
+### 3. Injeção por Campo (Desencorajada)
 
 ```java
 @Component
@@ -86,33 +85,28 @@ public class RelatorioService {
 }
 ```
 
-Desvantagens:
+**Desvantagens:**
 
-Dificulta testes unitários.
-
-Oculta dependências reais da classe.
-
-Impede imutabilidade.
-
-Aumenta o acoplamento ao framework.
+- Dificulta testes unitários.
+- Oculta dependências reais da classe.
+- Impede imutabilidade.
+- Aumenta o acoplamento ao framework.
 
 Embora funcional, essa abordagem é desencorajada em aplicações profissionais.
 
-🧩 Resolução de Dependências
+---
+
+## 🧩 Resolução de Dependências
 
 O Spring resolve dependências com base em:
 
-Tipo (Type-based resolution).
+- Tipo (Type-based resolution).
+- Nome (Name-based resolution).
+- Qualificadores (`@Qualifier`).
+- Anotações personalizadas.
+- Primazia (`@Primary`).
 
-Nome (Name-based resolution).
-
-Qualificadores (@Qualifier).
-
-Anotações personalizadas.
-
-Primazia (@Primary).
-
-🔸 Exemplo com múltiplas implementações
+### 🔸 Exemplo com múltiplas implementações
 
 ```java
 public interface PagamentoService {
@@ -146,21 +140,22 @@ Ou:
 public class PagamentoPadraoService implements PagamentoService { ... }
 ```
 
-🧩 Componentes e Estereótipos
+---
+
+## 🧩 Componentes e Estereótipos
 
 O Spring fornece anotações de estereótipo para indicar o papel de um componente:
 
-@Component — componente genérico.
+- `@Component` — componente genérico.
+- `@Service` — camada de serviço / lógica de negócio.
+- `@Repository` — camada de persistência.
+- `@Controller` / `@RestController` — camada web.
 
-@Service — camada de serviço / lógica de negócio.
+Essas anotações são semanticamente equivalentes do ponto de vista técnico, mas possuem valor arquitetural e semântico, além de permitir comportamentos adicionais (ex.: tradução de exceções em `@Repository`).
 
-@Repository — camada de persistência.
+---
 
-@Controller / @RestController — camada web.
-
-Essas anotações são semanticamente equivalentes do ponto de vista técnico, mas possuem valor arquitetural e semântico, além de permitir comportamentos adicionais (ex.: tradução de exceções em @Repository).
-
-🧭 Component Scan e Detecção de Beans
+## 🧭 Component Scan e Detecção de Beans
 
 O Spring detecta automaticamente classes anotadas através do component scanning, iniciado por:
 
@@ -168,59 +163,49 @@ O Spring detecta automaticamente classes anotadas através do component scanning
 @ComponentScan
 ```
 
-Por padrão, o Spring Boot escaneia o pacote onde está localizada a classe principal (@SpringBootApplication) e todos os seus subpacotes.
+Por padrão, o Spring Boot escaneia o pacote onde está localizada a classe principal (`@SpringBootApplication`) e todos os seus subpacotes.
 
-🔸 Boas práticas
+### 🔸 Boas práticas
 
-Posicionar a classe principal no pacote raiz do projeto.
+- Posicionar a classe principal no pacote raiz do projeto.
+- Organizar pacotes por domínio funcional (ex.: pedido, pagamento, cliente), e não apenas por camadas técnicas.
 
-Organizar pacotes por domínio funcional (ex.: pedido, pagamento, cliente), e não apenas por camadas técnicas.
+---
 
-🧬 Beans e seus Escopos
+## 🧬 Beans e seus Escopos
 
-Cada bean no Spring possui um escopo, que define sua estratégia de instânciação.
+Cada bean no Spring possui um escopo, que define sua estratégia de instanciação.
 
-Escopos principais:
+**Escopos principais:**
 
-singleton (padrão) — uma única instância por contexto.
+- `singleton` (padrão) — uma única instância por contexto.
+- `prototype` — uma nova instância a cada injeção.
+- `request` — uma instância por requisição HTTP.
+- `session` — uma instância por sessão HTTP.
+- `application` — uma instância por aplicação web.
+- `websocket` — uma instância por sessão WebSocket.
 
-prototype — uma nova instância a cada injeção.
+### 🔸 Observação importante
 
-request — uma instância por requisição HTTP.
+Beans `prototype` não têm seu ciclo de destruição gerenciado pelo Spring, diferentemente dos `singleton`.
 
-session — uma instância por sessão HTTP.
+---
 
-application — uma instância por aplicação web.
-
-websocket — uma instância por sessão WebSocket.
-
-🔸 Observação importante
-
-Beans prototype não têm seu ciclo de destruição gerenciado pelo Spring, diferentemente dos singleton.
-
-🧪 Ciclo de Vida dos Beans
+## 🧪 Ciclo de Vida dos Beans
 
 O ciclo de vida de um bean envolve:
 
-Instanciação.
+1. Instanciação.
+2. Injeção de dependências.
+3. Execução de callbacks:
+   - `@PostConstruct`
+   - `InitializingBean.afterPropertiesSet()`
+4. Bean pronto para uso.
+5. Destruição:
+   - `@PreDestroy`
+   - Métodos de destruição configurados.
 
-Injeção de dependências.
-
-Execução de callbacks:
-
-@PostConstruct
-
-InitializingBean.afterPropertiesSet()
-
-Bean pronto para uso.
-
-Destruição:
-
-@PreDestroy
-
-Métodos de destruição configurados.
-
-Exemplo:
+### Exemplo:
 
 ```java
 @Component
@@ -238,33 +223,31 @@ public class CacheManager {
 }
 ```
 
-🧠 Beans, Proxies e AOP
+---
+
+## 🧠 Beans, Proxies e AOP
 
 Um aspecto fundamental é que muitos beans não são instâncias diretas da classe original, mas proxies criados pelo Spring para aplicar comportamentos transversais, como:
 
-Transações (@Transactional)
-
-Segurança (@PreAuthorize, @Secured)
-
-Cache (@Cacheable)
-
-Observabilidade
-
-Logs e métricas
+- Transações (`@Transactional`)
+- Segurança (`@PreAuthorize`, `@Secured`)
+- Cache (`@Cacheable`)
+- Observabilidade
+- Logs e métricas
 
 Esses proxies interceptam chamadas aos métodos e aplicam lógica adicional antes, depois ou ao redor da execução real.
 
-🔍 Implicações práticas
+### 🔍 Implicações práticas
 
-Chamadas internas entre métodos da mesma classe não passam pelo proxy.
-
-Comportamentos como transações ou segurança podem não ser aplicados em cenários de self-invocation.
-
-O tipo do proxy (JDK dynamic proxy ou CGLIB) influencia compatibilidade e design.
+- Chamadas internas entre métodos da mesma classe não passam pelo proxy.
+- Comportamentos como transações ou segurança podem não ser aplicados em cenários de self-invocation.
+- O tipo do proxy (JDK dynamic proxy ou CGLIB) influencia compatibilidade e design.
 
 Esses temas serão aprofundados nos capítulos de AOP e Transações.
 
-🧱 Configuração Baseada em Java (@Configuration)
+---
+
+## 🧱 Configuração Baseada em Java (`@Configuration`)
 
 Além de estereótipos, o Spring permite definir beans explicitamente via classes de configuração:
 
@@ -279,32 +262,29 @@ public class AppConfig {
 }
 ```
 
-Diferença entre @Configuration e @Component
+### Diferença entre `@Configuration` e `@Component`
 
-@Configuration utiliza proxy de método para garantir que cada @Bean seja tratado como singleton, mesmo quando métodos se chamam internamente.
+- `@Configuration` utiliza proxy de método para garantir que cada `@Bean` seja tratado como singleton, mesmo quando métodos se chamam internamente.
+- Classes anotadas apenas com `@Component` não possuem esse comportamento.
 
-Classes anotadas apenas com @Component não possuem esse comportamento.
+---
 
-⚠️ Armadilhas Comuns
+## ⚠️ Armadilhas Comuns
 
-Uso excessivo de injeção por campo.
+- Uso excessivo de injeção por campo.
+- Beans com múltiplas responsabilidades.
+- Ambiguidade de dependências sem uso de `@Qualifier` ou `@Primary`.
+- Dependência circular.
+- Expectativa de comportamento transacional em chamadas internas.
 
-Beans com múltiplas responsabilidades.
+---
 
-Ambiguidade de dependências sem uso de @Qualifier ou @Primary.
-
-Dependência circular.
-
-Expectativa de comportamento transacional em chamadas internas.
-
-🧩 Conclusão do Capítulo
+## 🧩 Conclusão do Capítulo
 
 A injeção de dependência no Spring não é apenas um recurso sintático, mas uma base arquitetural que sustenta todo o ecossistema. Compreender profundamente como o contêiner cria, gerencia, injeta e envolve os beans é essencial para:
 
-Projetar sistemas escaláveis e testáveis.
-
-Evitar armadilhas relacionadas a proxies, escopos e ciclo de vida.
-
-Explorar de forma consciente recursos avançados como AOP, transações, cache e segurança.
+- Projetar sistemas escaláveis e testáveis.
+- Evitar armadilhas relacionadas a proxies, escopos e ciclo de vida.
+- Explorar de forma consciente recursos avançados como AOP, transações, cache e segurança.
 
 Este capítulo estabelece os fundamentos para compreender como o Spring organiza e orquestra os componentes de uma aplicação moderna.
