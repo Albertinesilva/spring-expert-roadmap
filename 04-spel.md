@@ -41,7 +41,9 @@ Exemplo simples:
 private int resultado; // 4
 ```
 
-🧩 Acesso a Propriedades e Métodos
+---
+
+## 🧩 Acesso a Propriedades e Métodos
 
 ```java
 @Value("#{usuario.nome}")
@@ -58,74 +60,85 @@ Ou em anotações como:
 public Produto buscarPorId(Long id) { ... }
 ```
 
-📦 Operadores
-🔸 Operadores aritméticos
+---
 
-+, -, \*, /, %
+## 📦 Operadores
 
-```
+### 🔸 Operadores aritméticos
+
+`+, -, *, /, %`
+
+```text
 #{10 * 2} → 20
 #{10 / 2} → 5
 ```
 
-🔸 Operadores relacionais
+---
 
-==, !=, <, >, <=, >=
+### 🔸 Operadores relacionais
 
-Alternativas textuais: eq, ne, lt, gt, le, ge
+`==, !=, <, >, <=, >=`
 
-```
+Alternativas textuais: `eq, ne, lt, gt, le, ge`
+
+```text
 #{#idade >= 18}
 ```
 
-🔸 Operadores lógicos
+---
 
-and, or, not
+### 🔸 Operadores lógicos
 
-```
+`and, or, not`
+
+```text
 #{#ativo and #verificado}
 #{not #expirado}
 ```
 
-🧭 Operador Ternário
+---
 
-```
+## 🧭 Operador Ternário
+
+```text
 #{#idade >= 18 ? 'Maior' : 'Menor'}
 ```
 
-📚 Acesso a Coleções, Mapas e Arrays
-🔸 Índices
+---
 
-```
+## 📚 Acesso a Coleções, Mapas e Arrays
+
+### 🔸 Índices
+
+```text
 #{lista[0]}
 #{mapa['chave']}
 ```
 
 Resultado: lista contendo apenas os nomes.
 
-🔸 Seleção
+---
 
-```
+### 🔸 Seleção
+
+```text
 #{usuarios.?[idade >= 18]}
 ```
 
 Resultado: sublista com usuários maiores de idade.
 
-🧠 Variáveis de Contexto
+---
+
+## 🧠 Variáveis de Contexto
 
 No contexto de métodos interceptados, como em cache ou segurança, o SpEL permite acessar:
 
-Parâmetros de método:
-
-#id, #usuario
-
-Retorno:
-
-#result
-
-Exceções:
-
-#exception
+- Parâmetros de método:  
+  `#id`, `#usuario`
+- Retorno:  
+  `#result`
+- Exceções:  
+  `#exception`
 
 Exemplo:
 
@@ -134,7 +147,9 @@ Exemplo:
 public Usuario salvar(Usuario usuario) { ... }
 ```
 
-🔐 SpEL e Spring Security
+---
+
+## 🔐 SpEL e Spring Security
 
 O SpEL é amplamente utilizado em anotações de segurança:
 
@@ -145,15 +160,14 @@ public Usuario buscar(Long id) { ... }
 
 Elementos disponíveis:
 
-authentication
+- `authentication`
+- `principal`
+- `hasRole()`, `hasAuthority()`
+- Beans registrados no contexto (`@beanName`)
 
-principal
+---
 
-hasRole(), hasAuthority()
-
-Beans registrados no contexto (@beanName)
-
-🚀 SpEL e Cache
+## 🚀 SpEL e Cache
 
 Exemplo típico:
 
@@ -169,7 +183,9 @@ Ou:
 public void atualizarEstoque(int resultado) { ... }
 ```
 
-⚙️ SpEL em Configurações (@Value)
+---
+
+## ⚙️ SpEL em Configurações (`@Value`)
 
 ```java
 @Value("#{systemProperties['user.home']}")
@@ -179,13 +195,15 @@ private String home;
 private double valorAleatorio;
 ```
 
-🔸 Acesso a tipos estáticos
+### 🔸 Acesso a tipos estáticos
 
 ```java
 #{T(java.lang.Math).PI}
 ```
 
-🧬 Avaliação Programática de Expressões
+---
+
+## 🧬 Avaliação Programática de Expressões
 
 Além do uso declarativo, o SpEL pode ser avaliado programaticamente:
 
@@ -203,40 +221,38 @@ Expression exp = parser.parseExpression("nome");
 String nome = exp.getValue(context, String.class);
 ```
 
-⚠️ Considerações de Segurança
+---
+
+## ⚠️ Considerações de Segurança
 
 Como o SpEL permite execução de métodos e acesso a tipos, ele deve ser utilizado com cautela, especialmente quando:
 
-Expressões são construídas a partir de entradas externas.
-
-O contexto contém objetos sensíveis.
+- Expressões são construídas a partir de entradas externas.
+- O contexto contém objetos sensíveis.
 
 O Spring fornece mecanismos de restrição por meio de:
 
-Contextos de avaliação controlados.
+- Contextos de avaliação controlados.
+- Limitação de resolvers e acessos permitidos.
 
-Limitação de resolvers e acessos permitidos.
+---
 
-🧱 Boas Práticas
+## 🧱 Boas Práticas
 
-Utilize SpEL apenas quando a lógica realmente precisar ser dinâmica.
+- Utilize SpEL apenas quando a lógica realmente precisar ser dinâmica.
+- Prefira expressões simples e legíveis.
+- Evite expressões complexas que dificultem manutenção.
+- Documente expressões relevantes em código crítico.
+- Não exponha o SpEL a entradas de usuários sem sanitização.
 
-Prefira expressões simples e legíveis.
+---
 
-Evite expressões complexas que dificultem manutenção.
-
-Documente expressões relevantes em código crítico.
-
-Não exponha o SpEL a entradas de usuários sem sanitização.
-
-🧩 Conclusão do Capítulo
+## 🧩 Conclusão do Capítulo
 
 O Spring Expression Language é um dos recursos mais poderosos — e muitas vezes subestimados — do ecossistema Spring. Ele permite:
 
-Tornar configurações declarativas mais expressivas.
-
-Aplicar regras dinâmicas em segurança, cache, eventos e integração.
-
-Reduzir acoplamento entre lógica de negócio e infraestrutura.
+- Tornar configurações declarativas mais expressivas.
+- Aplicar regras dinâmicas em segurança, cache, eventos e integração.
+- Reduzir acoplamento entre lógica de negócio e infraestrutura.
 
 Dominar o SpEL é compreender como o Spring transforma metadados em comportamento dinâmico, mantendo o código limpo, modular e altamente configurável.
