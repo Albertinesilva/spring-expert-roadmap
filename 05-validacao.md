@@ -40,28 +40,25 @@ No Spring Boot, a validação é ativada automaticamente ao incluir o starter:
 
 Esse starter inclui o Hibernate Validator como implementação padrão da especificação Jakarta Validation.
 
-🧩 Anotações de Validação Comuns
-🔸 Restrições básicas
+---
 
-@NotNull — não permite valor nulo.
+## 🧩 Anotações de Validação Comuns
 
-@NotBlank — não permite valor nulo ou string vazia.
+### 🔸 Restrições básicas
 
-@NotEmpty — não permite valor nulo ou coleção vazia.
+- `@NotNull` — não permite valor nulo.
+- `@NotBlank` — não permite valor nulo ou string vazia.
+- `@NotEmpty` — não permite valor nulo ou coleção vazia.
+- `@Size(min, max)` — tamanho mínimo e máximo.
+- `@Min`, `@Max` — valores mínimos e máximos.
+- `@Positive`, `@Negative`, `@PositiveOrZero`, `@NegativeOrZero`.
+- `@Email` — valida formato de e-mail.
+- `@Pattern(regexp = "...")` — valida por expressão regular.
+- `@Past`, `@PastOrPresent`, `@Future`, `@FutureOrPresent`.
 
-@Size(min, max) — tamanho mínimo e máximo.
+---
 
-@Min, @Max — valores mínimos e máximos.
-
-@Positive, @Negative, @PositiveOrZero, @NegativeOrZero.
-
-@Email — valida formato de e-mail.
-
-@Pattern(regexp = "...") — valida por expressão regular.
-
-@Past, @PastOrPresent, @Future, @FutureOrPresent.
-
-🔸 Exemplo
+### 🔸 Exemplo
 
 ```java
 public class UsuarioDTO {
@@ -79,15 +76,16 @@ public class UsuarioDTO {
 }
 ```
 
-🌐 Validação em Controllers (Spring MVC / WebFlux)
+---
+
+## 🌐 Validação em Controllers (Spring MVC / WebFlux)
 
 A validação é automaticamente acionada quando se utiliza:
 
-@Valid (Jakarta Validation)
+- `@Valid` (Jakarta Validation)
+- `@Validated` (Spring Validation)
 
-@Validated (Spring Validation)
-
-🔸 Exemplo com @Valid
+### 🔸 Exemplo com `@Valid`
 
 ```java
 @PostMapping("/usuarios")
@@ -97,19 +95,18 @@ public ResponseEntity<Void> criar(@RequestBody @Valid UsuarioDTO dto) {
 }
 ```
 
-🔸 Tratamento de erros
+### 🔸 Tratamento de erros
 
 Quando a validação falha, o Spring lança exceções como:
 
-MethodArgumentNotValidException
+- `MethodArgumentNotValidException`
+- `ConstraintViolationException`
 
-ConstraintViolationException
-
-Essas exceções podem ser tratadas globalmente via @ControllerAdvice.
+Essas exceções podem ser tratadas globalmente via `@ControllerAdvice`.
 
 ---
 
-🧩 Validação em Métodos de Serviço
+## 🧩 Validação em Métodos de Serviço
 
 Além da camada web, é possível aplicar validação diretamente em métodos de serviço:
 
@@ -126,7 +123,9 @@ public class UsuarioService {
 
 Nesse caso, a validação é aplicada por meio de proxies, utilizando AOP, e é executada antes da lógica do método.
 
-🔐 Validação em Entidades JPA
+---
+
+## 🔐 Validação em Entidades JPA
 
 As anotações de validação também podem ser aplicadas diretamente em entidades:
 
@@ -148,12 +147,14 @@ public class Usuario {
 
 Quando integradas ao JPA/Hibernate, essas validações podem ser executadas automaticamente:
 
-Antes de persist()
+- Antes de `persist()`
+- Antes de `merge()`
 
-Antes de merge()
+---
 
-🧪 Validação Condicional e Grupos de Validação
-🔸 Grupos de validação
+## 🧪 Validação Condicional e Grupos de Validação
+
+### 🔸 Grupos de validação
 
 É possível agrupar validações para cenários distintos:
 
@@ -181,11 +182,13 @@ public void criar(@Validated(Criacao.class) @RequestBody UsuarioDTO dto) { }
 public void atualizar(@Validated(Atualizacao.class) @RequestBody UsuarioDTO dto) { }
 ```
 
-🧩 Validações Customizadas
+---
+
+## 🧩 Validações Customizadas
 
 Quando as restrições padrão não são suficientes, é possível criar validações personalizadas.
 
-🔸 Definição da anotação
+### 🔸 Definição da anotação
 
 ```java
 @Constraint(validatedBy = DocumentoValidator.class)
@@ -198,7 +201,7 @@ public @interface DocumentoValido {
 }
 ```
 
-🔸 Implementação do validador
+### 🔸 Implementação do validador
 
 ```java
 public class DocumentoValidator implements ConstraintValidator<DocumentoValido, String> {
@@ -212,7 +215,9 @@ public class DocumentoValidator implements ConstraintValidator<DocumentoValido, 
 }
 ```
 
-🧠 Validação em Cascata (@Valid em Relacionamentos)
+---
+
+## 🧠 Validação em Cascata (`@Valid` em Relacionamentos)
 
 É possível validar objetos aninhados:
 
@@ -229,42 +234,39 @@ public class PedidoDTO {
 
 Nesse caso, a validação percorre toda a árvore de objetos.
 
-⚠️ Validação e Proxies
+---
 
-Quando a validação é aplicada em métodos (@Validated), ela depende de:
+## ⚠️ Validação e Proxies
 
-Proxies Spring.
+Quando a validação é aplicada em métodos (`@Validated`), ela depende de:
 
-Interceptores AOP.
+- Proxies Spring.
+- Interceptores AOP.
 
 Isso implica:
 
-Validações não são aplicadas em chamadas internas (self-invocation).
+- Validações não são aplicadas em chamadas internas (self-invocation).
+- Métodos `private` não são interceptados.
+- A validação ocorre apenas em chamadas externas ao proxy.
 
-Métodos private não são interceptados.
+---
 
-A validação ocorre apenas em chamadas externas ao proxy.
+## 🧱 Boas Práticas
 
-🧱 Boas Práticas
+- Centralize validações estruturais no nível de DTOs e entidades.
+- Use validações customizadas para regras de negócio reutilizáveis.
+- Evite lógica de validação complexa diretamente em controllers.
+- Utilize grupos de validação para cenários distintos (criação vs atualização).
+- Trate erros de validação de forma padronizada via `@ControllerAdvice`.
 
-Centralize validações estruturais no nível de DTOs e entidades.
+---
 
-Use validações customizadas para regras de negócio reutilizáveis.
-
-Evite lógica de validação complexa diretamente em controllers.
-
-Utilize grupos de validação para cenários distintos (criação vs atualização).
-
-Trate erros de validação de forma padronizada via @ControllerAdvice.
-
-🧩 Conclusão do Capítulo
+## 🧩 Conclusão do Capítulo
 
 A validação no Spring é um mecanismo essencial para garantir qualidade, segurança e consistência dos dados. Integrada de forma profunda ao ciclo de vida das requisições, métodos e entidades, ela permite:
 
-Declarar regras de forma clara e reutilizável.
-
-Reduzir erros em produção.
-
-Aumentar a confiabilidade do sistema.
+- Declarar regras de forma clara e reutilizável.
+- Reduzir erros em produção.
+- Aumentar a confiabilidade do sistema.
 
 Dominar a validação no Spring é compreender como o framework transforma metadados declarativos em garantias concretas de integridade e robustez.
