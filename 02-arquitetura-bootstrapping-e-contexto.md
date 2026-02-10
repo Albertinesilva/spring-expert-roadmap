@@ -1,6 +1,6 @@
 # ⚙️ Arquitetura, Bootstrapping e Contexto
 
-A arquitetura do Spring Boot é construída sobre os fundamentos do Spring Framework, especialmente o conceito de **Inversão de Controle (IoC)** e do **ApplicationContext**. Compreender o processo de inicialização (*bootstrapping*) é essencial para entender como a aplicação é configurada, como os componentes são registrados e como o ciclo de vida dos objetos é gerenciado.
+A arquitetura do Spring Boot é construída sobre os fundamentos do Spring Framework, especialmente o conceito de **Inversão de Controle (IoC)** e do **ApplicationContext**. Compreender o processo de inicialização (_bootstrapping_) é essencial para entender como a aplicação é configurada, como os componentes são registrados e como o ciclo de vida dos objetos é gerenciado.
 
 Mais do que um simples ponto de entrada (`main`), o bootstrapping define:
 
@@ -150,7 +150,9 @@ A anotação:
 ```java
 @SpringBootApplication
 ```
+
 É composta por:
+
 ```java
 @Configuration
 @EnableAutoConfiguration
