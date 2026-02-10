@@ -1,6 +1,6 @@
 # ⚙️ Arquitetura, Bootstrapping e Contexto
 
-A arquitetura do Spring Boot é construída sobre os fundamentos do Spring Framework, especialmente o conceito de **Inversão de Controle (IoC)** e do **ApplicationContext**. Compreender o processo de inicialização (_bootstrapping_) é essencial para entender como a aplicação é configurada, como os componentes são registrados e como o ciclo de vida dos objetos é gerenciado.
+A arquitetura do Spring Boot é construída sobre os fundamentos do Spring Framework, especialmente o conceito de **Inversão de Controle (IoC)** e do **ApplicationContext**. Compreender o processo de inicialização (*bootstrapping*) é essencial para entender como a aplicação é configurada, como os componentes são registrados e como o ciclo de vida dos objetos é gerenciado.
 
 Mais do que um simples ponto de entrada (`main`), o bootstrapping define:
 
@@ -33,117 +33,103 @@ public static void main(String[] args) {
 }
 ```
 
-A classe SpringApplication é responsável por:
+A classe `SpringApplication` é responsável por:
 
-Determinar o tipo de aplicação (Servlet, Reactive, CLI).
+- Determinar o tipo de aplicação (Servlet, Reactive, CLI).
+- Criar o `ApplicationContext` apropriado.
+- Preparar o ambiente (`Environment`).
+- Aplicar listeners e inicializadores.
 
-Criar o ApplicationContext apropriado.
+---
 
-Preparar o ambiente (Environment).
-
-Aplicar listeners e inicializadores.
-
-2. Preparação do ambiente
+### 2. Preparação do ambiente
 
 Antes da criação dos beans, o Spring:
 
-Carrega propriedades de múltiplas fontes:
+- Carrega propriedades de múltiplas fontes:
+  - `application.properties` / `application.yml`
+  - Variáveis de ambiente
+  - Argumentos de linha de comando
+  - Configurações externas (ex.: Config Server)
+- Resolve profiles ativos.
+- Aplica conversão de tipos e precedência entre fontes.
 
-application.properties / application.yml
+---
 
-Variáveis de ambiente
-
-Argumentos de linha de comando
-
-Configurações externas (ex.: Config Server)
-
-Resolve profiles ativos.
-
-Aplica conversão de tipos e precedência entre fontes.
-
-3. Registro de definições de beans
+### 3. Registro de definições de beans
 
 As definições de beans são obtidas a partir de:
 
-Classes anotadas (@Configuration, @Component, etc.).
+- Classes anotadas (`@Configuration`, `@Component`, etc.).
+- Classes de autoconfiguração do Spring Boot.
+- Configurações explícitas via Java, XML ou outras fontes.
 
-Classes de autoconfiguração do Spring Boot.
+> Nesse momento, ainda não há instâncias criadas — apenas metadados.
 
-Configurações explícitas via Java, XML ou outras fontes.
+---
 
-Nesse momento, ainda não há instâncias criadas — apenas metadados.
-
-4. Processamento de BeanFactoryPostProcessors
+### 4. Processamento de BeanFactoryPostProcessors
 
 Antes da criação dos beans, o Spring executa:
 
-BeanFactoryPostProcessor
-
-BeanDefinitionRegistryPostProcessor
+- `BeanFactoryPostProcessor`
+- `BeanDefinitionRegistryPostProcessor`
 
 Esses componentes podem:
 
-Modificar definições de beans.
+- Modificar definições de beans.
+- Registrar novos beans dinamicamente.
+- Alterar escopos, dependências e propriedades.
 
-Registrar novos beans dinamicamente.
+Exemplo típico: suporte a `@ConfigurationProperties`.
 
-Alterar escopos, dependências e propriedades.
+---
 
-Exemplo típico: suporte a @ConfigurationProperties.
-
-5. Criação e inicialização dos beans
+### 5. Criação e inicialização dos beans
 
 O contêiner:
 
-Resolve dependências.
+- Resolve dependências.
+- Aplica injeção (construtor, setter, campo).
+- Executa:
+  - Métodos `@PostConstruct`
+  - `InitializingBean.afterPropertiesSet()`
+  - Métodos customizados de inicialização
+- Envolve beans com proxies quando necessário (AOP, transações, segurança, cache).
 
-Aplica injeção (construtor, setter, campo).
+---
 
-Executa:
-
-Métodos @PostConstruct
-
-InitializingBean.afterPropertiesSet()
-
-Métodos customizados de inicialização
-
-Envolve beans com proxies quando necessário (AOP, transações, segurança, cache).
-
-6. Publicação de eventos do ciclo de vida
+### 6. Publicação de eventos do ciclo de vida
 
 Durante o bootstrapping, eventos como:
 
-ApplicationStartingEvent
-
-ApplicationEnvironmentPreparedEvent
-
-ApplicationContextInitializedEvent
-
-ApplicationPreparedEvent
-
-ApplicationStartedEvent
-
-ApplicationReadyEvent
+- `ApplicationStartingEvent`
+- `ApplicationEnvironmentPreparedEvent`
+- `ApplicationContextInitializedEvent`
+- `ApplicationPreparedEvent`
+- `ApplicationStartedEvent`
+- `ApplicationReadyEvent`
 
 São publicados, permitindo que componentes reajam a momentos específicos da inicialização.
 
-7. Encerramento do contexto
+---
+
+### 7. Encerramento do contexto
 
 Ao finalizar a aplicação, o Spring:
 
-Publica ContextClosedEvent.
+- Publica `ContextClosedEvent`.
+- Executa métodos `@PreDestroy`.
+- Executa callbacks de destruição configurados.
+- Libera recursos (threads, conexões, caches, etc.).
 
-Executa métodos @PreDestroy.
+---
 
-Executa callbacks de destruição configurados.
-
-Libera recursos (threads, conexões, caches, etc.).
-
-🔹 Auto-configuração e Conditional Annotations
+## 🔹 Auto-configuração e Conditional Annotations
 
 A autoconfiguração é um dos pilares do Spring Boot. Ela permite que a aplicação seja configurada automaticamente com base no classpath, nas propriedades e no ambiente de execução.
 
-🔸 Ativação da autoconfiguração
+### 🔸 Ativação da autoconfiguração
 
 A anotação:
 
@@ -159,138 +145,128 @@ A anotação:
 @ComponentScan
 ```
 
-O @EnableAutoConfiguration instrui o Spring a carregar automaticamente classes de configuração presentes nos starters.
+O `@EnableAutoConfiguration` instrui o Spring a carregar automaticamente classes de configuração presentes nos starters.
 
-🔸 Como funciona a autoconfiguração
+---
+
+### 🔸 Como funciona a autoconfiguração
 
 O Spring Boot utiliza:
 
-Arquivos META-INF/spring.factories (Spring Boot ≤ 2.x) ou
-
-Arquivos META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports (Spring Boot 3.x)
+- Arquivos `META-INF/spring.factories` (Spring Boot ≤ 2.x)  
+ou  
+- Arquivos `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` (Spring Boot 3.x)
 
 Para localizar classes de autoconfiguração.
 
 Cada autoconfiguração é fortemente baseada em anotações condicionais, como:
 
-@ConditionalOnClass — ativa se uma classe existir no classpath.
+- `@ConditionalOnClass` — ativa se uma classe existir no classpath.
+- `@ConditionalOnMissingBean` — ativa se não existir um bean do mesmo tipo.
+- `@ConditionalOnProperty` — ativa se uma propriedade estiver definida.
+- `@ConditionalOnWebApplication` — ativa apenas em aplicações web.
+- `@ConditionalOnSingleCandidate` — ativa se houver exatamente um bean candidato.
 
-@ConditionalOnMissingBean — ativa se não existir um bean do mesmo tipo.
+---
 
-@ConditionalOnProperty — ativa se uma propriedade estiver definida.
+### 🔸 Exemplo conceitual
 
-@ConditionalOnWebApplication — ativa apenas em aplicações web.
+Uma configuração de `DataSource` só será aplicada se:
 
-@ConditionalOnSingleCandidate — ativa se houver exatamente um bean candidato.
-
-🔸 Exemplo conceitual
-
-Uma configuração de DataSource só será aplicada se:
-
-Houver uma dependência JDBC no classpath.
-
-Não existir outro DataSource definido manualmente.
-
-As propriedades necessárias estiverem disponíveis.
+- Houver uma dependência JDBC no classpath.
+- Não existir outro `DataSource` definido manualmente.
+- As propriedades necessárias estiverem disponíveis.
 
 Isso garante configuração automática sem sobrescrever configurações explícitas.
 
-🔹 Spring Boot DevTools e Experiência do Desenvolvedor
+---
+
+## 🔹 Spring Boot DevTools e Experiência do Desenvolvedor
 
 O módulo Spring Boot DevTools foi projetado para melhorar a produtividade durante o desenvolvimento local.
 
-Funcionalidades principais
+### Funcionalidades principais
 
-🔁 Restart automático:
+#### Restart automático
 
-Reinicia o contexto quando classes do projeto são modificadas.
+- Reinicia o contexto quando classes do projeto são modificadas.
+- Mantém caches internos fora do classloader reiniciado, acelerando o ciclo.
 
-Mantém caches internos fora do classloader reiniciado, acelerando o ciclo.
+#### LiveReload
 
-🌐 LiveReload:
+- Atualiza automaticamente o navegador quando recursos front-end mudam.
 
-Atualiza automaticamente o navegador quando recursos front-end mudam.
+#### Configurações específicas para desenvolvimento
 
-⚙️ Configurações específicas para desenvolvimento:
+- Desativa caches de templates.
+- Habilita mensagens de erro mais detalhadas.
+- Altera comportamentos padrão que não são ideais para produção.
 
-Desativa caches de templates.
+> O DevTools é automaticamente desativado em ambientes de produção, garantindo que seus efeitos sejam limitados ao desenvolvimento.
 
-Habilita mensagens de erro mais detalhadas.
+---
 
-Altera comportamentos padrão que não são ideais para produção.
-
-Observação importante
-
-O DevTools é automaticamente desativado em ambientes de produção, garantindo que seus efeitos sejam limitados ao desenvolvimento.
-
-🔹 Docker Compose Support e Development Mode
+## 🔹 Docker Compose Support e Development Mode
 
 A partir do Spring Boot 3.1, foi introduzido suporte nativo ao Docker Compose como parte da experiência de desenvolvimento.
 
-Principais benefícios
+### Principais benefícios
 
-Inicialização automática de serviços auxiliares (banco, cache, mensageria).
+- Inicialização automática de serviços auxiliares (banco, cache, mensageria).
+- Injeção automática de propriedades com base nos containers em execução.
+- Redução de configuração manual de ambientes locais.
 
-Injeção automática de propriedades com base nos containers em execução.
+### Exemplo de uso
 
-Redução de configuração manual de ambientes locais.
+Com um arquivo `docker-compose.yml` no projeto, o Spring Boot:
 
-Exemplo de uso
-
-Com um arquivo docker-compose.yml no projeto, o Spring Boot:
-
-Detecta os serviços.
-
-Inicializa containers necessários.
-
-Conecta automaticamente a aplicação a esses serviços durante o desenvolvimento.
+- Detecta os serviços.
+- Inicializa containers necessários.
+- Conecta automaticamente a aplicação a esses serviços durante o desenvolvimento.
 
 Isso promove um ambiente local mais próximo da produção, sem complexidade operacional adicional.
 
-🔹 Graceful Shutdown e Lifecycle Management
+---
+
+## 🔹 Graceful Shutdown e Lifecycle Management
 
 O Spring Boot oferece suporte a encerramento gracioso, garantindo que requisições em andamento sejam finalizadas antes da aplicação ser encerrada.
 
-Funcionalidades principais
+### Funcionalidades principais
 
 Suporte a:
 
-HTTP servers (Tomcat, Jetty, Undertow).
+- HTTP servers (Tomcat, Jetty, Undertow).
+- Pools de threads.
+- Conexões de banco de dados.
+- Mensageria e filas.
 
-Pools de threads.
+Configuração via propriedades:
 
-Conexões de banco de dados.
-
-Mensageria e filas.
-
-Configuração via propriedades, por exemplo:
-
-```
+```yaml
 server:
   shutdown: graceful
+
 spring:
   lifecycle:
     timeout-per-shutdown-phase: 30s
 ```
 
-Benefícios
+### Benefícios
 
-Evita perda de requisições.
+- Evita perda de requisições.
+- Garante integridade transacional.
+- Promove estabilidade em ambientes distribuídos e orquestrados (ex.: Kubernetes).
 
-Garante integridade transacional.
+---
 
-Promove estabilidade em ambientes distribuídos e orquestrados (ex.: Kubernetes).
+## 🧩 Conclusão do Capítulo
 
-🧩 Conclusão do Capítulo
+Compreender o processo de bootstrapping e o funcionamento do `ApplicationContext` é fundamental para:
 
-Compreender o processo de bootstrapping e o funcionamento do ApplicationContext é fundamental para:
-
-Diagnosticar problemas de configuração.
-
-Entender comportamentos implícitos do framework.
-
-Projetar arquiteturas mais previsíveis, performáticas e seguras.
-
-Explorar de forma consciente recursos como AOP, transações, cache, segurança e observabilidade.
+- Diagnosticar problemas de configuração.
+- Entender comportamentos implícitos do framework.
+- Projetar arquiteturas mais previsíveis, performáticas e seguras.
+- Explorar de forma consciente recursos como AOP, transações, cache, segurança e observabilidade.
 
 Este capítulo estabelece a base conceitual para todos os demais, pois praticamente todos os módulos do Spring se integram e se manifestam por meio do ciclo de vida do contexto.
