@@ -1,6 +1,8 @@
 # 31 — Anotações Modernas no Spring
 
-Este capítulo apresenta as anotações modernas mais importantes do ecossistema Spring (Spring Boot 3+, Spring Framework 6+), organizadas por categoria, com explicações práticas, exemplos e boas práticas. O foco é produtividade, clareza arquitetural e aderência aos padrões atuais.
+Este capítulo apresenta as anotações modernas mais relevantes do ecossistema **Spring Boot 3+** e **Spring Framework 6+**, organizadas por categoria, com explicações práticas, exemplos e boas práticas.
+
+O foco é **produtividade, clareza arquitetural e aderência aos padrões atuais**.
 
 ---
 
@@ -21,45 +23,84 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 }
+```
 
-@ConfigurationProperties
+---
+
+### `@ConfigurationProperties`
+
 Mapeia propriedades externas para objetos tipados.
 
+```java
 @ConfigurationProperties(prefix = "app.security")
 public record SecurityProperties(boolean enabled, String apiKey) {}
+```
 
+```yaml
 app:
   security:
     enabled: true
     api-key: abc123
+```
+
 Ativar:
 
+```java
 @EnableConfigurationProperties(SecurityProperties.class)
-@Import
+```
+
+---
+
+### `@Import`
+
 Importa classes de configuração.
 
+```java
 @Configuration
 @Import(OutraConfiguracao.class)
 public class AppConfig {}
+```
 
-@ConditionalOnProperty, @ConditionalOnBean, @ConditionalOnMissingBean
+---
+
+### `@ConditionalOnProperty`, `@ConditionalOnBean`, `@ConditionalOnMissingBean`
+
+```java
 @Bean
 @ConditionalOnProperty(name = "app.cache.enabled", havingValue = "true")
 public CacheManager cacheManager() {
     return new ConcurrentMapCacheManager();
 }
+```
 
-📌 2. Anotações de Injeção de Dependência
-@Component, @Service, @Repository, @Controller, @RestController
+---
 
+## 📌 2. Anotações de Injeção de Dependência
+
+### Estereótipos
+
+- `@Component`
+- `@Service`
+- `@Repository`
+- `@Controller`
+- `@RestController`
+
+```java
 @Service
 public class UsuarioService {}
+```
 
+```java
 @RestController
 @RequestMapping("/api/usuarios")
 public class UsuarioController {}
+```
 
-@Autowired (opcional em construtores modernos)
+---
+
+### Injeção por construtor (recomendada)
+
+```java
 @Service
 public class PedidoService {
 
@@ -69,40 +110,77 @@ public class PedidoService {
         this.repository = repository;
     }
 }
+```
 
-@Qualifier
-Quando há múltiplas implementações.
+> `@Autowired` é opcional em construtores únicos.
 
+---
+
+### `@Qualifier`
+
+```java
 @Service
 @Qualifier("emailNotificacao")
 public class EmailNotificacaoService implements NotificacaoService {}
+```
 
-@Autowired
+```java
 public PedidoService(@Qualifier("emailNotificacao") NotificacaoService service) {}
+```
 
-@Primary
-Define bean preferencial.
+---
 
+### `@Primary`
+
+Define o bean preferencial.
+
+```java
 @Primary
 @Service
 public class DefaultNotificacaoService implements NotificacaoService {}
+```
 
-📌 3. Anotações Web e REST (Spring MVC / WebFlux) @RequestMapping, @GetMapping, @PostMapping, etc.
+---
 
+## 📌 3. Anotações Web e REST (Spring MVC / WebFlux)
+
+### Mapeamentos HTTP
+
+```java
 @GetMapping("/{id}")
 public UsuarioDTO buscar(@PathVariable Long id) {}
+```
 
-@RequestBody, @PathVariable, @RequestParam, @RequestHeader
+---
+
+### Parâmetros HTTP
+
+- `@RequestBody`
+- `@PathVariable`
+- `@RequestParam`
+- `@RequestHeader`
+
+```java
 @PostMapping
 public ResponseEntity<UsuarioDTO> criar(@RequestBody @Valid UsuarioDTO dto) {}
+```
 
-@ResponseStatus
+---
+
+### `@ResponseStatus`
+
+```java
 @ResponseStatus(HttpStatus.CREATED)
 @PostMapping
 public UsuarioDTO criar(@RequestBody UsuarioDTO dto) {}
+```
 
-@ControllerAdvice e @ExceptionHandler
-@ControllerAdvice
+---
+
+### Tratamento global de exceções
+
+```java
+@RestControllerAdvice
 public class ApiExceptionHandler {
 
     @ExceptionHandler(EntidadeNaoEncontradaException.class)
@@ -110,47 +188,63 @@ public class ApiExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 }
+```
 
-@RestControllerAdvice
-Combina @ControllerAdvice + @ResponseBody.
+---
 
-📌 4. Anotações de Validação (Bean Validation / Jakarta Validation)
+## 📌 4. Anotações de Validação (Jakarta Validation)
 
-@Valid / @Validated
+### `@Valid` / `@Validated`
+
+```java
 @PostMapping
 public ResponseEntity<Void> salvar(@RequestBody @Valid UsuarioDTO dto) {}
-Principais anotações
+```
+
+---
+
+### Principais anotações
+
+```java
 public record UsuarioDTO(
     @NotBlank String nome,
     @Email String email,
     @Size(min = 8) String senha,
     @Min(18) int idade
 ) {}
+```
 
 Outras:
 
-@NotNull
+- `@NotNull`
+- `@NotEmpty`
+- `@Pattern`
+- `@Positive`
+- `@Past`
+- `@Future`
 
-@NotEmpty
+---
 
-@Pattern
+### Validação personalizada
 
-@Positive, @PositiveOrZero
-
-@Past, @Future
-
-Validação personalizada
-@Target({ FIELD })
-@Retention(RUNTIME)
+```java
+@Target({ ElementType.FIELD })
+@Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = EmailCorporativoValidator.class)
 public @interface EmailCorporativo {
     String message() default "E-mail inválido";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
+```
 
-📌 5. Anotações de Persistência (JPA / Hibernate) Entidades
+---
 
+## 📌 5. Anotações de Persistência (JPA / Hibernate)
+
+### Entidades
+
+```java
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -162,16 +256,26 @@ public class Usuario {
     @Column(nullable = false)
     private String nome;
 }
+```
 
-Relacionamentos
+---
+
+### Relacionamentos
+
+```java
 @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 private List<Pedido> pedidos;
 
 @ManyToOne
 @JoinColumn(name = "usuario_id")
 private Usuario usuario;
+```
 
-Auditoria
+---
+
+### Auditoria
+
+```java
 @EntityListeners(AuditingEntityListener.class)
 public class EntidadeBase {
 
@@ -181,102 +285,196 @@ public class EntidadeBase {
     @LastModifiedDate
     private LocalDateTime atualizadoEm;
 }
+```
+
 Ativar:
 
+```java
 @EnableJpaAuditing
+```
 
-📌 6. Anotações de Transações
+---
 
-@Transactional
+## 📌 6. Anotações de Transações
+
+### `@Transactional`
+
+```java
 @Transactional
 public void processarPedido(Long id) {}
+```
 
-Configurações avançadas
+---
+
+### Configuração avançada
+
+```java
 @Transactional(
     propagation = Propagation.REQUIRES_NEW,
     isolation = Isolation.READ_COMMITTED,
     rollbackFor = Exception.class
 )
 public void executar() {}
+```
 
-@TransactionalEventListener
+---
+
+### `@TransactionalEventListener`
+
+```java
 @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
 public void aoConfirmarPagamento(PagamentoConfirmadoEvent event) {}
+```
 
-📌 7. Anotações de Cache @EnableCaching
+---
 
+## 📌 7. Anotações de Cache
+
+### `@EnableCaching`
+
+```java
 @EnableCaching
 @Configuration
 public class CacheConfig {}
+```
 
-@Cacheable, @CachePut, @CacheEvict
+---
+
+### Operações de cache
+
+```java
 @Cacheable("usuarios")
 public Usuario buscar(Long id) {}
+```
 
+```java
 @CacheEvict(value = "usuarios", key = "#id")
 public void remover(Long id) {}
+```
 
-📌 8. Anotações de Agendamento e Execução Assíncrona
+---
 
-@EnableScheduling, @Scheduled
+## 📌 8. Agendamento e Execução Assíncrona
+
+### `@EnableScheduling` e `@Scheduled`
+
+```java
 @EnableScheduling
 @Configuration
 public class SchedulingConfig {}
+```
 
+```java
 @Scheduled(fixedRate = 60000)
 public void executarTarefa() {}
+```
 
-@EnableAsync, @Async
+---
+
+### `@EnableAsync` e `@Async`
+
+```java
 @EnableAsync
 @Configuration
 public class AsyncConfig {}
+```
 
+```java
 @Async
 public CompletableFuture<Void> enviarEmail() {}
-📌 9. Anotações de Segurança (Spring Security 6+) @EnableMethodSecurity
+```
 
+---
+
+## 📌 9. Segurança (Spring Security 6+)
+
+### `@EnableMethodSecurity`
+
+```java
 @EnableMethodSecurity
 @Configuration
 public class SecurityConfig {}
+```
 
-@PreAuthorize, @PostAuthorize
+---
+
+### Autorização declarativa
+
+```java
 @PreAuthorize("hasRole('ADMIN')")
 public void excluirUsuario(Long id) {}
+```
 
+```java
 @PostAuthorize("returnObject.usuario == authentication.name")
 public Pedido buscarPedido(Long id) {}
+```
 
-@Secured (legado, mas ainda suportado)
+---
+
+### `@Secured` (legado)
+
+```java
 @Secured("ROLE_ADMIN")
 public void atualizarSistema() {}
+```
 
-📌 10. Anotações de Eventos
+---
 
-Publicação de eventos
+## 📌 10. Eventos
+
+### Publicação
+
+```java
 applicationEventPublisher.publishEvent(new UsuarioCriadoEvent(this, usuario));
+```
 
-@EventListener
+---
+
+### `@EventListener`
+
+```java
 @EventListener
 public void aoCriarUsuario(UsuarioCriadoEvent event) {}
+```
 
-@Async em listeners
+---
+
+### Listener assíncrono
+
+```java
 @Async
 @EventListener
 public void processarEvento(Evento event) {}
+```
 
-📌 11. Anotações de Observabilidade
+---
 
-@Observed (Micrometer / Spring Boot 3+)
+## 📌 11. Observabilidade
+
+### `@Observed` (Micrometer)
+
+```java
 @Observed(name = "pedido.processar", contextualName = "processarPedido")
 public void processarPedido() {}
+```
 
-@Timed
+---
+
+### `@Timed`
+
+```java
 @Timed(value = "pedido.criar", description = "Tempo para criar pedidos")
 public void criarPedido() {}
+```
 
-📌 12. Anotações para HTTP Clients
+---
 
-@HttpExchange (Spring 6+)
+## 📌 12. HTTP Clients Declarativos
+
+### `@HttpExchange` (Spring 6+)
+
+```java
 @HttpExchange("/api/pagamentos")
 public interface PagamentoClient {
 
@@ -286,9 +484,11 @@ public interface PagamentoClient {
     @PostExchange
     void criar(@RequestBody Pagamento pagamento);
 }
+```
 
-Registrar:
+Registro:
 
+```java
 @Bean
 public PagamentoClient pagamentoClient(WebClient.Builder builder) {
     return HttpServiceProxyFactory
@@ -296,20 +496,27 @@ public PagamentoClient pagamentoClient(WebClient.Builder builder) {
         .build()
         .createClient(PagamentoClient.class);
 }
+```
 
-📌 13. Anotações Reativas (WebFlux)
+---
 
-@RestController com Reactor
+## 📌 13. Anotações Reativas (WebFlux)
+
+```java
 @GetMapping("/usuarios")
 public Flux<Usuario> listar() {}
+```
 
+```java
 @GetMapping("/usuarios/{id}")
 public Mono<Usuario> buscar(@PathVariable Long id) {}
+```
 
-@Controller + @ResponseBody também é válido.
-📌 14. Anotações de AOP (Aspect-Oriented Programming)
+---
 
-@Aspect, @Around, @Before, @AfterReturning, @AfterThrowing
+## 📌 14. AOP (Aspect-Oriented Programming)
+
+```java
 @Aspect
 @Component
 public class LoggingAspect {
@@ -320,30 +527,56 @@ public class LoggingAspect {
         return joinPoint.proceed();
     }
 }
+```
 
-@Pointcut
+```java
 @Pointcut("within(com.exemplo.service..*)")
 public void serviceLayer() {}
+```
 
-📌 15. Anotações de Testes
+---
 
-@SpringBootTest
+## 📌 15. Testes
+
+### `@SpringBootTest`
+
+```java
 @SpringBootTest
 class UsuarioServiceTest {}
+```
 
-@WebMvcTest
+---
+
+### `@WebMvcTest`
+
+```java
 @WebMvcTest(UsuarioController.class)
 class UsuarioControllerTest {}
+```
 
-@DataJpaTest
+---
+
+### `@DataJpaTest`
+
+```java
 @DataJpaTest
 class UsuarioRepositoryTest {}
+```
 
-@MockBean
+---
+
+### `@MockBean`
+
+```java
 @MockBean
 private UsuarioService usuarioService;
+```
 
-@TestConfiguration
+---
+
+### `@TestConfiguration`
+
+```java
 @TestConfiguration
 public class TestConfig {
 
@@ -352,107 +585,128 @@ public class TestConfig {
         return Clock.fixed(Instant.now(), ZoneId.systemDefault());
     }
 }
+```
 
-📌 16. Anotações de Configuração Condicional e Modular
+---
 
-@Profile
+## 📌 16. Configuração Condicional e Modular
+
+### `@Profile`
+
+```java
 @Profile("dev")
 @Bean
 public DataSource dataSourceDev() {}
+```
 
-@ConditionalOnExpression
+---
+
+### `@ConditionalOnExpression`
+
+```java
 @Bean
 @ConditionalOnExpression("'${app.mode}'=='producao'")
-
 public ServicoProducao servico() {}
-@ImportResource
+```
+
+---
+
+### `@ImportResource`
+
+```java
 @ImportResource("classpath:legacy-context.xml")
+```
 
-📌 17. Anotações de Documentação (OpenAPI / Swagger)
+---
 
-@Operation, @ApiResponse, @Schema
+## 📌 17. Documentação (OpenAPI)
+
+```java
 @Operation(summary = "Cria um usuário", description = "Endpoint para criação de usuários")
 @ApiResponse(responseCode = "201", description = "Usuário criado com sucesso")
-
 @PostMapping
 public ResponseEntity<UsuarioDTO> criar(@RequestBody @Valid UsuarioDTO dto) {}
+```
 
+```java
 @Schema(description = "Dados do usuário")
 public record UsuarioDTO(
     @Schema(example = "João Silva") String nome,
     @Schema(example = "joao@email.com") String email
 ) {}
+```
 
+---
 
-📌 18. Anotações de Virtual Threads (Java 21+ com Spring Boot 3.2+)
+## 📌 18. Virtual Threads (Java 21+)
 
-@EnableAsync com virtual threads
+```java
 @Bean
 public Executor taskExecutor() {
     return Executors.newVirtualThreadPerTaskExecutor();
 }
-Usado com:
+```
 
+Uso:
+
+```java
 @Async
 public void processar() {}
-📌 19. Anotações de Spring Modulith
-@ApplicationModule
+```
+
+---
+
+## 📌 19. Spring Modulith
+
+```java
 @ApplicationModule
 package com.exemplo.pedidos;
+```
 
-import org.springframework.modulith.ApplicationModule;
-@NamedInterface
+```java
 @NamedInterface("api")
 package com.exemplo.pedidos.api;
+```
 
-import org.springframework.modulith.NamedInterface;
-@Externalized
+```java
 @Externalized
 public class PedidoCriadoEvent {}
-
-📌 20. Boas Práticas no Uso de Anotações
-
-✅ Prefira injeção por construtor.
-
-✅ Evite lógica pesada em classes anotadas com @Controller.
-
-✅ Use @ConfigurationProperties em vez de @Value.
-
-✅ Combine validação com DTOs, não diretamente em entidades.
-
-✅ Evite abusar de @Transactional em métodos muito amplos.
-
-✅ Documente endpoints com OpenAPI.
-
-❌ Evite misturar responsabilidades (ex: @Service que também é @Controller).
-
-❌ Não exponha entidades JPA diretamente em APIs.
-
-📌 21. Tabela-Resumo de Anotações Modernas
-
-Categoria	Anotações
-Inicialização	@SpringBootApplication, @ConfigurationProperties, @Import
-Injeção	@Component, @Service, @Repository, @Autowired, @Qualifier, @Primary
-Web	@RestController, @RequestMapping, @GetMapping, @RequestBody, @ControllerAdvice
-Validação	@Valid, @NotNull, @Email, @Size, @Pattern
-Persistência	@Entity, @Id, @OneToMany, @ManyToOne, @CreatedDate
-Transações	@Transactional, @TransactionalEventListener
-Cache	@EnableCaching, @Cacheable, @CacheEvict
-Agendamento	@EnableScheduling, @Scheduled
-Assíncrono	@EnableAsync, @Async
-Segurança	@EnableMethodSecurity, @PreAuthorize, @PostAuthorize
-Eventos	@EventListener, @Async
-Observabilidade	@Observed, @Timed
-HTTP Clients	@HttpExchange, @GetExchange, @PostExchange
-AOP	@Aspect, @Around, @Before, @AfterReturning
-Testes	@SpringBootTest, @WebMvcTest, @DataJpaTest, @MockBean
-Modularidade	@ApplicationModule, @NamedInterface, @Externalized
-Documentação	@Operation, @ApiResponse, @Schema
-Virtual Threads	@EnableAsync, Executors.newVirtualThreadPerTaskExecutor()
-
-📌 22. Conclusão
-As anotações modernas do Spring formam a espinha dorsal do desenvolvimento produtivo, seguro, modular e observável. Combinadas com boas práticas arquiteturais, elas permitem criar aplicações robustas, escaláveis e alinhadas aos padrões atuais do ecossistema Java.
-
-Este capítulo serve como referência prática e técnica para uso profissional em projetos reais com Spring Boot 3+, Java 17/21+ e arquitetura moderna.
-
 ```
+
+---
+
+## 📌 20. Boas Práticas
+
+✅ Prefira injeção por construtor.  
+✅ Use `@ConfigurationProperties` em vez de `@Value`.  
+✅ Combine validação com DTOs.  
+✅ Documente APIs com OpenAPI.  
+✅ Evite métodos transacionais excessivamente amplos.
+
+❌ Não exponha entidades JPA diretamente na API.  
+❌ Não misture responsabilidades em uma única classe.
+
+---
+
+## 📌 21. Tabela-Resumo
+
+| Categoria       | Principais Anotações                                                  |
+| --------------- | --------------------------------------------------------------------- |
+| Inicialização   | `@SpringBootApplication`, `@ConfigurationProperties`, `@Import`       |
+| Injeção         | `@Component`, `@Service`, `@Repository`, `@Qualifier`, `@Primary`     |
+| Web             | `@RestController`, `@GetMapping`, `@RequestBody`, `@ControllerAdvice` |
+| Validação       | `@Valid`, `@NotNull`, `@Email`, `@Size`                               |
+| Persistência    | `@Entity`, `@Id`, `@OneToMany`, `@CreatedDate`                        |
+| Transações      | `@Transactional`, `@TransactionalEventListener`                       |
+| Cache           | `@EnableCaching`, `@Cacheable`, `@CacheEvict`                         |
+| Segurança       | `@EnableMethodSecurity`, `@PreAuthorize`                              |
+| Observabilidade | `@Observed`, `@Timed`                                                 |
+| Testes          | `@SpringBootTest`, `@WebMvcTest`, `@DataJpaTest`                      |
+
+---
+
+## 📌 22. Conclusão
+
+As anotações modernas do Spring constituem a base do desenvolvimento produtivo, seguro, modular e observável.
+
+Quando combinadas com boas práticas arquiteturais, permitem construir aplicações robustas, escaláveis e alinhadas aos padrões atuais do ecossistema Java com **Spring Boot 3+, Java 17/21+ e arquitetura moderna**.
