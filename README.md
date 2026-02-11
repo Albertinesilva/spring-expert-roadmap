@@ -36,81 +36,89 @@ Aqui, o foco não é apenas aprender anotações como `@Autowired`, `@Transactio
 ## 🧭 Navegação Rápida
 
 ### 🔰 Fundamentos
-| Nº | Tema | Link |
-|----|------|------|
-| 00 | 📚 Sumário Geral | [00-sumario.md](00-sumario.md) |
-| 01 | 📘 Introdução | [01-introducao.md](01-introducao.md) |
-| 02 | ⚙️ Arquitetura, Bootstrapping e Contexto | [02-arquitetura-bootstrapping-e-contexto.md](02-arquitetura-bootstrapping-e-contexto.md) |
-| 03 | 🧩 Injeção de Dependência e Componentes | [03-injecao-dependencia-e-componentes.md](03-injecao-dependencia-e-componentes.md) |
-| 04 | 🔍 Spring Expression Language (SpEL) | [04-spel.md](04-spel.md) |
-| 05 | 🛡️ Validação | [05-validacao.md](05-validacao.md) |
+
+| Nº  | Tema                                     | Link                                                                                     |
+| --- | ---------------------------------------- | ---------------------------------------------------------------------------------------- |
+| 00  | 📚 Sumário Geral                         | [00-sumario.md](00-sumario.md)                                                           |
+| 01  | 📘 Introdução                            | [01-introducao.md](01-introducao.md)                                                     |
+| 02  | ⚙️ Arquitetura, Bootstrapping e Contexto | [02-arquitetura-bootstrapping-e-contexto.md](02-arquitetura-bootstrapping-e-contexto.md) |
+| 03  | 🧩 Injeção de Dependência e Componentes  | [03-injecao-dependencia-e-componentes.md](03-injecao-dependencia-e-componentes.md)       |
+| 04  | 🔍 Spring Expression Language (SpEL)     | [04-spel.md](04-spel.md)                                                                 |
+| 05  | 🛡️ Validação                             | [05-validacao.md](05-validacao.md)                                                       |
 
 ---
 
 ### 🌐 Web, APIs e Integrações
-| Nº | Tema | Link |
-|----|------|------|
-| 06 | 🌐 Web e Spring MVC | [06-web-e-spring-mvc.md](06-web-e-spring-mvc.md) |
-| 07 | 🗂️ APIs REST Maturas | [07-apis-rest-maturas.md](07-apis-rest-maturas.md) |
-| 08 | 📦 Spring GraphQL | [08-spring-graphql.md](08-spring-graphql.md) |
-| 12 | 🔗 Spring Integration | [12-spring-integration.md](12-spring-integration.md) |
-| 21 | 🌍 Clientes HTTP e Integrações | [21-clientes-http.md](21-clientes-http.md) |
+
+| Nº  | Tema                           | Link                                                 |
+| --- | ------------------------------ | ---------------------------------------------------- |
+| 06  | 🌐 Web e Spring MVC            | [06-web-e-spring-mvc.md](06-web-e-spring-mvc.md)     |
+| 07  | 🗂️ APIs REST Maturas           | [07-apis-rest-maturas.md](07-apis-rest-maturas.md)   |
+| 08  | 📦 Spring GraphQL              | [08-spring-graphql.md](08-spring-graphql.md)         |
+| 12  | 🔗 Spring Integration          | [12-spring-integration.md](12-spring-integration.md) |
+| 21  | 🌍 Clientes HTTP e Integrações | [21-clientes-http.md](21-clientes-http.md)           |
 
 ---
 
 ### 🗄️ Dados, Transações e Consistência
-| Nº | Tema | Link |
-|----|------|------|
-| 09 | 🗄️ Persistência e Exploração de Dados | [09-persistencia-spring-data.md](09-persistencia-spring-data.md) |
-| 10 | 🔁 Transações | [10-transacoes.md](10-transacoes.md) |
-| 24 | 📦 Processamento em Lote (Spring Batch) | [24-spring-batch.md](24-spring-batch.md) |
+
+| Nº  | Tema                                    | Link                                                             |
+| --- | --------------------------------------- | ---------------------------------------------------------------- |
+| 09  | 🗄️ Persistência e Exploração de Dados   | [09-persistencia-spring-data.md](09-persistencia-spring-data.md) |
+| 10  | 🔁 Transações                           | [10-transacoes.md](10-transacoes.md)                             |
+| 24  | 📦 Processamento em Lote (Spring Batch) | [24-spring-batch.md](24-spring-batch.md)                         |
 
 ---
 
 ### 🔐 Segurança, Testes e Qualidade
-| Nº | Tema | Link |
-|----|------|------|
-| 14 | 🔐 Segurança e Identidade | [14-seguranca.md](14-seguranca.md) |
-| 15 | 🧪 Testes | [15-testes.md](15-testes.md) |
-| 17 | 🧵 AOP (Aspect-Oriented Programming) | [17-aop.md](17-aop.md) |
-| 18 | 🚀 Caching | [18-caching.md](18-caching.md) |
+
+| Nº  | Tema                                 | Link                               |
+| --- | ------------------------------------ | ---------------------------------- |
+| 14  | 🔐 Segurança e Identidade            | [14-seguranca.md](14-seguranca.md) |
+| 15  | 🧪 Testes                            | [15-testes.md](15-testes.md)       |
+| 17  | 🧵 AOP (Aspect-Oriented Programming) | [17-aop.md](17-aop.md)             |
+| 18  | 🚀 Caching                           | [18-caching.md](18-caching.md)     |
 
 ---
 
 ### ⚡ Concorrência, Performance e Observabilidade
-| Nº | Tema | Link |
-|----|------|------|
-| 19 | ⏱️ Agendamento e Execução Assíncrona | [19-agendamento-async.md](19-agendamento-async.md) |
-| 20 | 📊 Observabilidade (Metrics, Tracing, Logging) | [20-observabilidade.md](20-observabilidade.md) |
-| 22 | ⚡ Programação Reativa (WebFlux) | [22-webflux.md](22-webflux.md) |
-| 25 | 🧠 GraalVM e Compilação Nativa | [25-graalvm.md](25-graalvm.md) |
-| 26 | 🧵 Virtual Threads (Java 21+) | [26-virtual-threads.md](26-virtual-threads.md) |
+
+| Nº  | Tema                                           | Link                                               |
+| --- | ---------------------------------------------- | -------------------------------------------------- |
+| 19  | ⏱️ Agendamento e Execução Assíncrona           | [19-agendamento-async.md](19-agendamento-async.md) |
+| 20  | 📊 Observabilidade (Metrics, Tracing, Logging) | [20-observabilidade.md](20-observabilidade.md)     |
+| 22  | ⚡ Programação Reativa (WebFlux)               | [22-webflux.md](22-webflux.md)                     |
+| 25  | 🧠 GraalVM e Compilação Nativa                 | [25-graalvm.md](25-graalvm.md)                     |
+| 26  | 🧵 Virtual Threads (Java 21+)                  | [26-virtual-threads.md](26-virtual-threads.md)     |
 
 ---
 
 ### ☁️ Cloud Native, Modularidade e Evolução
-| Nº | Tema | Link |
-|----|------|------|
-| 23 | ☁️ Cloud Native e Gateways | [23-cloud-native.md](23-cloud-native.md) |
-| 27 | 🧱 Spring Modulith | [27-spring-modulith.md](27-spring-modulith.md) |
-| 30 | 🔄 Migração e Evolução | [30-migracao-evolucao.md](30-migracao-evolucao.md) |
-| 31 | 🆕 Anotações Modernas e Atualizações Recentes | [31-anotacoes-modernas.md](31-anotacoes-modernas.md) |
-| 32 | 🏗️ Boas Práticas Arquiteturais | [32-boas-praticas.md](32-boas-praticas.md) |
+
+| Nº  | Tema                                          | Link                                                 |
+| --- | --------------------------------------------- | ---------------------------------------------------- |
+| 23  | ☁️ Cloud Native e Gateways                    | [23-cloud-native.md](23-cloud-native.md)             |
+| 27  | 🧱 Spring Modulith                            | [27-spring-modulith.md](27-spring-modulith.md)       |
+| 30  | 🔄 Migração e Evolução                        | [30-migracao-evolucao.md](30-migracao-evolucao.md)   |
+| 31  | 🆕 Anotações Modernas e Atualizações Recentes | [31-anotacoes-modernas.md](31-anotacoes-modernas.md) |
+| 32  | 🏗️ Boas Práticas Arquiteturais                | [32-boas-praticas.md](32-boas-praticas.md)           |
 
 ---
 
 ### 🤖 Ferramentas, IA e Interfaces
-| Nº | Tema | Link |
-|----|------|------|
-| 28 | 🤖 Spring AI | [28-spring-ai.md](28-spring-ai.md) |
-| 29 | 🖥️ Aplicações de Linha de Comando | [29-cli.md](29-cli.md) |
+
+| Nº  | Tema                              | Link                               |
+| --- | --------------------------------- | ---------------------------------- |
+| 28  | 🤖 Spring AI                      | [28-spring-ai.md](28-spring-ai.md) |
+| 29  | 🖥️ Aplicações de Linha de Comando | [29-cli.md](29-cli.md)             |
 
 ---
 
 ### 📎 Referências
-| Nº | Tema | Link |
-|----|------|------|
-| 33 | 📎 Referências Oficiais | [33-referencias.md](33-referencias.md) |
+
+| Nº  | Tema                    | Link                                   |
+| --- | ----------------------- | -------------------------------------- |
+| 33  | 📎 Referências Oficiais | [33-referencias.md](33-referencias.md) |
 
 ---
 
@@ -168,3 +176,4 @@ Veja o arquivo CONTRIBUTING.md (se aplicável) ou abra uma issue.
 📜 Licença
 
 Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.
+```
