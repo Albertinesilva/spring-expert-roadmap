@@ -126,7 +126,6 @@ Aqui, o foco não é apenas aprender anotações como `@Autowired`, `@Transactio
 
 ```bash
 📦 spring-guia-completo
- ┣ 📜 README.md
  ┣ 📜 00-sumario.md
  ┣ 📜 01-introducao.md
  ┣ 📜 02-arquitetura-bootstrapping-e-contexto.md
@@ -160,9 +159,14 @@ Aqui, o foco não é apenas aprender anotações como `@Autowired`, `@Transactio
  ┣ 📜 30-migracao-evolucao.md
  ┣ 📜 31-anotacoes-modernas.md
  ┣ 📜 32-boas-praticas.md
- ┗ 📜 33-referencias.md
+ ┣ 📜 33-referencias.md
+ ┣ 📜 CONTRIBUTING.md
+ ┣ 📜 LICENSE
+ ┣ 📜 README.md
+```
 
 ---
+
 🤝 Contribuindo
 
 Contribuições são bem-vindas! Você pode:
@@ -171,10 +175,9 @@ Contribuições são bem-vindas! Você pode:
 - Corrigir erros.
 - Adicionar exemplos.
 - Atualizar conteúdo conforme novas versões do Spring e Java.
-Veja o arquivo CONTRIBUTING.md (se aplicável) ou abra uma issue.
+
+Veja o arquivo `CONTRIBUTING.md` (se aplicável) ou abra uma issue.
 
 📜 Licença
 
-Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.
-```
-
+Este projeto está licenciado sob a licença MIT. Consulte o arquivo `LICENSE` para mais detalhes.
