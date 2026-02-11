@@ -177,3 +177,4 @@ Veja o arquivo CONTRIBUTING.md (se aplicável) ou abra uma issue.
 
 Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.
 ```
+
