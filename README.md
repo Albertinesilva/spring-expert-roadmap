@@ -183,6 +183,7 @@ Veja o arquivo `CONTRIBUTING.md` (se aplicável) ou abra uma issue.
 
 📜 Licença
 
-Este projeto está licenciado sob a licença MIT. Consulte o arquivo <a href="LICENSE">`LICENSE`</a> para mais detalhes.
+Este projeto está licenciado sob a licença MIT. Consulte o arquivo <a href="https://github.com/Albertinesilva/spring-expert-roadmap/tree/main?tab=License-1-ov-file">`LICENSE`</a> para mais detalhes.
+
 
 
