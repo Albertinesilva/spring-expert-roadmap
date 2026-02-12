@@ -179,12 +179,8 @@ Contribuições são bem-vindas! Você pode:
 - Adicionar exemplos.
 - Atualizar conteúdo conforme novas versões do Spring e Java.
 
-Veja o arquivo `CONTRIBUTING.md` (se aplicável) ou abra uma issue.
+Veja o arquivo <a href="CONTRIBUTING.md">`CONTRIBUTING.md`</a> (se aplicável) ou abra uma issue.
 
 📜 Licença
 
 Este projeto está licenciado sob a licença MIT. Consulte o arquivo <a href="LICENSE">`LICENSE`</a> para mais detalhes.
-
-
-
-
