@@ -433,3 +433,10 @@ O Spring Batch é a solução padrão do ecossistema Spring para processamento e
 - Integração simples com bancos, arquivos, APIs e mensageria
 
 É especialmente indicado para sistemas corporativos, governamentais e acadêmicos que demandam processamento massivo, confiável e auditável.
+
+---
+
+<p align="center">
+<b>Finalizada a Spring Batch! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="25-graalvm.md">GraalVM e Spring Native</a>
+</p>

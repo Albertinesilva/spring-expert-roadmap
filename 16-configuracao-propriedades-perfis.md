@@ -343,15 +343,15 @@ public class PagamentoProperties {
 ✔️ Nunca exponha segredos em repositórios  
 ✔️ Utilize variáveis de ambiente em produção  
 ✔️ Documente propriedades customizadas  
-✔️ Evite lógica de negócio baseada diretamente em valores hardcoded  
+✔️ Evite lógica de negócio baseada diretamente em valores hardcoded
 
 ---
 
 # 📚 Referências
 
-- https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config  
-- https://docs.spring.io/spring-framework/reference/core/beans/environment.html  
-- https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html  
+- https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config
+- https://docs.spring.io/spring-framework/reference/core/beans/environment.html
+- https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
 
 ---
 
@@ -362,3 +362,10 @@ O sistema de configuração do Spring Boot é poderoso e flexível, permitindo a
 O uso correto de perfis, binding estruturado e boas práticas de segurança é essencial para projetos profissionais e ambientes corporativos.
 
 Configuração bem feita é base para arquitetura sustentável.
+
+---
+
+<p align="center">
+<b>Finalizada a Configuração, Propriedades e Perfis no Spring Boot! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="17-aop.md">AOP (Programação Orientada a Aspectos) no Spring</a>
+</p>

@@ -532,3 +532,10 @@ Sistemas bem arquitetados, testados, seguros e observáveis são:
 - Mais alinhados às exigências do mercado.
 
 Este capítulo consolida um guia prático para profissionais que desejam construir aplicações Spring modernas, robustas e preparadas para o longo prazo.
+
+---
+
+<p align="center">
+<b>Finalizada a Boas Práticas no Desenvolvimento com Spring! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="33-referencias.md">Referências Oficiais e Recursos Recomendados</a>
+</p>

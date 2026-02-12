@@ -224,3 +224,10 @@ Quando bem conduzida, ela:
 - Prepara o sistema para o futuro.
 
 Spring Boot moderno, Java LTS (17/21) e Jakarta EE formam uma base sólida, atualizada e sustentável para sistemas corporativos de longo prazo.
+
+---
+
+<p align="center">
+<b>Finalizada a Migração e Evolução (Spring Boot, Java e Jakarta EE)! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="31-anotacoes-modernas.md">Anotações Modernas no Spring</a>
+</p>

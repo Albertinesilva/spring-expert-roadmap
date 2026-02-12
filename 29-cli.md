@@ -256,3 +256,10 @@ Benefícios:
 O Spring oferece um ecossistema robusto para aplicações CLI, desde shells interativos com Spring Shell até execução de scripts com Spring Boot CLI.
 
 Essas ferramentas ampliam o alcance do Spring além de APIs web, tornando-o uma plataforma completa para automação, operações, DevOps e desenvolvimento produtivo.
+
+---
+
+<p align="center">
+<b>Finalizada a Aplicações de Linha de Comando (Spring Shell e Spring Boot CLI)! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="30-migracao-evolucao.md">Migração e Evolução (Spring Boot, Java e Jakarta EE)</a>
+</p>

@@ -256,3 +256,10 @@ O Spring Expression Language é um dos recursos mais poderosos — e muitas veze
 - Reduzir acoplamento entre lógica de negócio e infraestrutura.
 
 Dominar o SpEL é compreender como o Spring transforma metadados em comportamento dinâmico, mantendo o código limpo, modular e altamente configurável.
+
+---
+
+<p align="center">
+<b>Finalizada a Spring Expression Language (SpEL)! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="05-validacao.md">Validação (Spring Validation / Jakarta Validation)</a>
+</p>

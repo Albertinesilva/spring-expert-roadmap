@@ -336,3 +336,10 @@ Spring Boot integra-se com Kubernetes via:
 O ecossistema Spring oferece um conjunto completo de ferramentas para construção de aplicações **Cloud Native**, integrando configuração distribuída, descoberta de serviços, gateways, mecanismos de resiliência e integração com provedores de nuvem.
 
 Dominar esses conceitos é fundamental para arquiteturas modernas, escaláveis e resilientes, especialmente em ambientes baseados em microserviços e infraestrutura distribuída.
+
+---
+
+<p align="center">
+<b>Finalizada a Cloud Native, Configuração Distribuída e Gateways! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="24-spring-batch.md">Spring Batch</a>
+</p>

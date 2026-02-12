@@ -96,7 +96,7 @@ public enum EventosPedido {
 ```java
 @Configuration
 @EnableStateMachine
-public class PedidoStateMachineConfig 
+public class PedidoStateMachineConfig
         extends StateMachineConfigurerAdapter<EstadosPedido, EventosPedido> {
 
     @Override
@@ -196,7 +196,7 @@ Executam lógica durante transições ou entrada/saída de estados.
 ```java
 @Bean
 public Action<EstadosPedido, EventosPedido> registrarPagamento() {
-    return context -> 
+    return context ->
         System.out.println("Pagamento registrado para o pedido.");
 }
 ```
@@ -231,7 +231,7 @@ public void configure(
 
 @Bean
 public Action<EstadosPedido, EventosPedido> entradaPago() {
-    return context -> 
+    return context ->
         System.out.println("Pedido entrou no estado PAGO");
 }
 ```
@@ -461,3 +461,10 @@ void naoDevePagarSemAutorizacao() {
 O Spring State Machine fornece uma base sólida para modelar processos complexos de forma explícita, previsível e observável. Ao transformar regras de negócio em estados e transições bem definidas, você reduz complexidade acidental, melhora a manutenibilidade e aumenta a confiabilidade do sistema.
 
 Dominar máquinas de estado é dominar o controle do fluxo de negócio em arquiteturas modernas.
+
+---
+
+<p align="center">
+<b>Finalizada a Máquinas de Estado com Spring State Machine! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="14-seguranca.md">Segurança e Identidade com Spring</a>
+</p>

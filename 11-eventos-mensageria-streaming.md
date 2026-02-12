@@ -24,13 +24,13 @@ Processamento contínuo de fluxos de dados em tempo real, com ordenação, parti
 
 # 🧩 Tipos de Comunicação
 
-| Tipo | Característica |
-|------|---------------|
-| Síncrona | Bloqueante, acoplada |
-| Assíncrona | Não bloqueante, desacoplada |
-| Event-driven | Baseada em eventos, reativa |
-| Message-driven | Baseada em mensagens |
-| Stream-driven | Baseada em fluxo contínuo |
+| Tipo           | Característica              |
+| -------------- | --------------------------- |
+| Síncrona       | Bloqueante, acoplada        |
+| Assíncrona     | Não bloqueante, desacoplada |
+| Event-driven   | Baseada em eventos, reativa |
+| Message-driven | Baseada em mensagens        |
+| Stream-driven  | Baseada em fluxo contínuo   |
 
 ---
 
@@ -102,10 +102,10 @@ public void aoConfirmarPedido(PedidoConfirmadoEvent event) {
 
 ### 📌 Fases disponíveis
 
-- BEFORE_COMMIT  
-- AFTER_COMMIT  
-- AFTER_ROLLBACK  
-- AFTER_COMPLETION  
+- BEFORE_COMMIT
+- AFTER_COMMIT
+- AFTER_ROLLBACK
+- AFTER_COMPLETION
 
 ---
 
@@ -241,11 +241,11 @@ spring:
 
 Streaming é diferente de mensageria tradicional:
 
-| Mensageria | Streaming |
-|------------|-----------|
-| Mensagens pontuais | Fluxo contínuo |
+| Mensageria                        | Streaming                      |
+| --------------------------------- | ------------------------------ |
+| Mensagens pontuais                | Fluxo contínuo                 |
 | Geralmente deletadas após consumo | Retidas por tempo configurável |
-| Foco em entrega | Foco em processamento |
+| Foco em entrega                   | Foco em processamento          |
 
 ---
 
@@ -352,11 +352,11 @@ Garante consistência entre banco e mensageria.
 
 # 🔐 Garantias de Entrega
 
-| Garantia | Significado |
-|----------|------------|
-| At-most-once | Pode perder mensagens, nunca duplica |
-| At-least-once | Nunca perde, pode duplicar |
-| Exactly-once | Não perde nem duplica (mais complexo) |
+| Garantia      | Significado                           |
+| ------------- | ------------------------------------- |
+| At-most-once  | Pode perder mensagens, nunca duplica  |
+| At-least-once | Nunca perde, pode duplicar            |
+| Exactly-once  | Não perde nem duplica (mais complexo) |
 
 Kafka suporta **Exactly-Once Semantics (EOS)** com configurações adequadas.
 
@@ -407,3 +407,8 @@ Utilize **Testcontainers** ou brokers embarcados.
 Eventos, mensageria e streaming são pilares de arquiteturas modernas orientadas a serviços e microsserviços. O ecossistema Spring fornece abstrações poderosas e flexíveis para construir soluções desacopladas, resilientes e escaláveis.
 
 Dominar esses conceitos permite criar sistemas que reagem em tempo real, escalam horizontalmente e mantêm consistência mesmo em ambientes distribuídos complexos.
+
+<p align="center">
+<b>Finalizada a Eventos, Mensageria e Streaming! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="12-spring-integration.md">Integração de Sistemas com Spring Integration</a>
+</p>

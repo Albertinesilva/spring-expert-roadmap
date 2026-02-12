@@ -288,3 +288,10 @@ A injeção de dependência no Spring não é apenas um recurso sintático, mas 
 - Explorar de forma consciente recursos avançados como AOP, transações, cache e segurança.
 
 Este capítulo estabelece os fundamentos para compreender como o Spring organiza e orquestra os componentes de uma aplicação moderna.
+
+---
+
+<p align="center">
+<b>Finalizada a Injeção de Dependência e Componentes! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="04-spel.md">Spring Expression Language (SpEL)</a>
+</p>

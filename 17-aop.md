@@ -15,7 +15,7 @@ Este capítulo apresenta os conceitos, fundamentos e uso prático da **Programa�
 
 # 🧠 O que é AOP?
 
-AOP (Aspect-Oriented Programming) é um paradigma que visa separar **preocupações transversais** (*cross-cutting concerns*) da lógica principal do negócio.
+AOP (Aspect-Oriented Programming) é um paradigma que visa separar **preocupações transversais** (_cross-cutting concerns_) da lógica principal do negócio.
 
 Preocupações transversais são funcionalidades que se repetem em várias partes da aplicação, como:
 
@@ -31,26 +31,26 @@ Sem AOP, essas responsabilidades acabam se espalhando pelo código, tornando-o m
 
 # 🔍 Conceitos Fundamentais
 
-| Conceito | Descrição |
-|----------|------------|
-| **Aspect** | Classe que contém a lógica transversal |
+| Conceito       | Descrição                                            |
+| -------------- | ---------------------------------------------------- |
+| **Aspect**     | Classe que contém a lógica transversal               |
 | **Join Point** | Ponto específico da execução (ex: chamada de método) |
-| **Advice** | Ação executada em um Join Point |
-| **Pointcut** | Expressão que define onde o Advice será aplicado |
-| **Weaving** | Processo de aplicar aspectos ao código |
-| **Proxy** | Objeto gerado pelo Spring para interceptação |
+| **Advice**     | Ação executada em um Join Point                      |
+| **Pointcut**   | Expressão que define onde o Advice será aplicado     |
+| **Weaving**    | Processo de aplicar aspectos ao código               |
+| **Proxy**      | Objeto gerado pelo Spring para interceptação         |
 
 ---
 
 # ⚙️ Tipos de Advice
 
-| Tipo | Descrição |
-|------|------------|
-| `@Before` | Executa antes do método |
-| `@After` | Executa após o método (sempre) |
-| `@AfterReturning` | Executa após retorno com sucesso |
-| `@AfterThrowing` | Executa após exceção |
-| `@Around` | Envolve completamente a execução do método |
+| Tipo              | Descrição                                  |
+| ----------------- | ------------------------------------------ |
+| `@Before`         | Executa antes do método                    |
+| `@After`          | Executa após o método (sempre)             |
+| `@AfterReturning` | Executa após retorno com sucesso           |
+| `@AfterThrowing`  | Executa após exceção                       |
+| `@Around`         | Envolve completamente a execução do método |
 
 ---
 
@@ -78,7 +78,7 @@ public class LoggingAspect {
 
     @Before("execution(* com.exemplo.servico..*(..))")
     public void logAntes(JoinPoint joinPoint) {
-        System.out.println("Chamando método: " 
+        System.out.println("Chamando método: "
             + joinPoint.getSignature().getName());
     }
 }
@@ -130,7 +130,7 @@ public Object medirTempo(ProceedingJoinPoint pjp) throws Throwable {
 
     long fim = System.currentTimeMillis();
 
-    System.out.println("Tempo de execução: " 
+    System.out.println("Tempo de execução: "
         + (fim - inicio) + " ms");
 
     return retorno;
@@ -161,7 +161,7 @@ public class LogavelAspect {
 
     @Before("@annotation(Logavel)")
     public void logMetodoAnotado(JoinPoint joinPoint) {
-        System.out.println("Método anotado executado: " 
+        System.out.println("Método anotado executado: "
             + joinPoint.getSignature().getName());
     }
 }
@@ -187,7 +187,7 @@ A transação é aplicada via proxy e aspecto, sem necessidade de código explí
 # ⚠️ Limitações do AOP no Spring
 
 - Apenas métodos **públicos** são interceptados por padrão
-- Chamadas internas (*self-invocation*) não passam pelo proxy
+- Chamadas internas (_self-invocation_) não passam pelo proxy
 - Não funciona em métodos `final`, `private` ou `static`
 - Atua apenas em beans gerenciados pelo Spring
 
@@ -243,7 +243,7 @@ public class AuditoriaAspect {
 
     @Before("@annotation(Logavel)")
     public void auditar(JoinPoint jp) {
-        System.out.println("Auditando método: " 
+        System.out.println("Auditando método: "
             + jp.getSignature().getName());
     }
 }
@@ -259,15 +259,15 @@ public class AuditoriaAspect {
 ✔️ Documente bem seus pointcuts  
 ✔️ Teste cenários com e sem proxy  
 ✔️ Utilize `@Order` quando múltiplos aspectos forem aplicados  
-✔️ Evite aspectos excessivamente genéricos  
+✔️ Evite aspectos excessivamente genéricos
 
 ---
 
 # 📚 Referências
 
-- https://docs.spring.io/spring-framework/reference/core/aop.html  
-- https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-aop  
-- https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/aop/AspectJExpressionPointcut.html  
+- https://docs.spring.io/spring-framework/reference/core/aop.html
+- https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-aop
+- https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/aop/AspectJExpressionPointcut.html
 
 ---
 
@@ -276,3 +276,10 @@ public class AuditoriaAspect {
 A AOP no Spring é uma ferramenta poderosa para separar responsabilidades transversais da lógica principal, promovendo código mais limpo, reutilizável e de fácil manutenção.
 
 Seu uso consciente melhora significativamente a qualidade arquitetural da aplicação e contribui para sistemas mais organizados e escaláveis.
+
+---
+
+<p align="center">
+<b>Finalizada a AOP (Programação Orientada a Aspectos) no Spring! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="18-caching.md">Caching no Spring</a>
+</p>

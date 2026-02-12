@@ -248,3 +248,10 @@ docker run -p 8080:8080 minha-imagem:latest
 O GraalVM, aliado ao suporte nativo do Spring Boot 3+, transforma aplicações Java em soluções modernas, rápidas e eficientes para ambientes cloud-native.
 
 Embora existam limitações técnicas relacionadas a AOT e reflexão, os ganhos em tempo de inicialização, consumo de memória e escalabilidade tornam essa abordagem altamente recomendada para microsserviços, arquiteturas serverless e aplicações altamente elásticas.
+
+---
+
+<p align="center">
+<b>Finalizada a GraalVM e Spring Native! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="26-virtual-threads.md">Virtual Threads (Java 21+) no Ecossistema Spring</a>
+</p>

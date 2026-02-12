@@ -180,3 +180,10 @@ O bloqueio ocorre apenas na virtual thread, sem impactar diretamente as threads 
 As Virtual Threads representam uma evolução significativa no modelo de concorrência Java, oferecendo escalabilidade massiva sem abandonar a simplicidade do código síncrono.
 
 No ecossistema Spring, elas permitem desenvolver sistemas modernos, performáticos e de fácil manutenção, reduzindo a necessidade de modelos reativos complexos em grande parte dos cenários tradicionais.
+
+---
+
+<p align="center">
+<b>Finalizada a Virtual Threads (Java 21+) no Ecossistema Spring! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="27-spring-modulith.md">Spring Modulith (Monólitos Modulares)</a>
+</p>

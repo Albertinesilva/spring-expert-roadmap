@@ -24,7 +24,7 @@ Uma API REST madura:
 
 ### 🧩 Conceito
 
-HATEOAS (*Hypermedia as the Engine of Application State*) é um princípio REST que afirma que a API deve fornecer links que orientam o cliente sobre quais ações são possíveis a partir do estado atual.
+HATEOAS (_Hypermedia as the Engine of Application State_) é um princípio REST que afirma que a API deve fornecer links que orientam o cliente sobre quais ações são possíveis a partir do estado atual.
 
 No Spring, isso é suportado via **Spring HATEOAS**.
 
@@ -172,17 +172,20 @@ public UsuarioDTO buscar(@PathVariable Long id) {
 #### 🔸 Estratégias comuns
 
 **Via URL**
+
 ```
 /api/v1/usuarios
 /api/v2/usuarios
 ```
 
 **Via Header**
+
 ```
 Accept: application/vnd.minhaapi.v1+json
 ```
 
 **Via Parâmetro**
+
 ```
 /usuarios?version=1
 ```
@@ -306,3 +309,10 @@ Esses temas são aprofundados no capítulo de Observabilidade.
 Projetar APIs REST maduras exige muito mais do que criar controladores e expor endpoints. É necessário compreender contratos, versionamento, erros, segurança, observabilidade, hipermídia e evolução contínua.
 
 O Spring fornece um ecossistema completo para isso — mas cabe ao desenvolvedor dominar seus mecanismos e aplicar boas práticas arquiteturais para construir APIs resilientes, escaláveis e sustentáveis ao longo do tempo.
+
+---
+
+<p align="center">
+<b>Finalizada a APIs REST Maturas! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="08-spring-graphql.md"></a>
+</p>

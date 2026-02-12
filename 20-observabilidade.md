@@ -4,10 +4,10 @@
 
 Este capítulo aborda como o Spring Boot oferece suporte completo à **observabilidade**, permitindo monitorar, medir e diagnosticar aplicações de forma eficiente. Os principais pilares são:
 
-- **Metrics**: métricas de performance e utilização de recursos  
-- **Tracing**: rastreamento distribuído de requisições  
-- **Logging**: registro estruturado de eventos e exceções  
-- **Health Checks**: monitoramento da saúde da aplicação  
+- **Metrics**: métricas de performance e utilização de recursos
+- **Tracing**: rastreamento distribuído de requisições
+- **Logging**: registro estruturado de eventos e exceções
+- **Health Checks**: monitoramento da saúde da aplicação
 
 O objetivo é permitir que aplicações Java escaláveis e distribuídas possam ser **observadas, monitoradas e mantidas** com confiabilidade.
 
@@ -19,10 +19,10 @@ O objetivo é permitir que aplicações Java escaláveis e distribuídas possam 
 
 Em arquiteturas modernas (microserviços e cloud-native), ela se apoia em quatro pilares:
 
-1. **Metrics** → dados quantitativos (latência, taxa de erro, throughput, memória)  
-2. **Logs** → eventos detalhados da execução  
-3. **Tracing** → rastreamento de requisições entre múltiplos serviços  
-4. **Health Checks** → verificação da saúde da aplicação e suas dependências  
+1. **Metrics** → dados quantitativos (latência, taxa de erro, throughput, memória)
+2. **Logs** → eventos detalhados da execução
+3. **Tracing** → rastreamento de requisições entre múltiplos serviços
+4. **Health Checks** → verificação da saúde da aplicação e suas dependências
 
 Esses pilares são complementares e devem ser usados em conjunto.
 
@@ -32,12 +32,12 @@ Esses pilares são complementares e devem ser usados em conjunto.
 
 O Spring Boot utiliza o **Micrometer** como facade para coleta de métricas, com suporte a múltiplos backends:
 
-- Prometheus  
-- Datadog  
-- New Relic  
-- CloudWatch  
-- Grafana  
-- Entre outros  
+- Prometheus
+- Datadog
+- New Relic
+- CloudWatch
+- Grafana
+- Entre outros
 
 ---
 
@@ -93,9 +93,9 @@ public void processarPedido() {
 
 Também é possível usar:
 
-- `Counter` → contadores  
-- `Gauge` → valores instantâneos  
-- `DistributionSummary` → distribuição de valores  
+- `Counter` → contadores
+- `Gauge` → valores instantâneos
+- `DistributionSummary` → distribuição de valores
 
 Exemplo:
 
@@ -147,10 +147,10 @@ public void executar() {
 
 ### Conceitos importantes
 
-- **Trace** → conjunto completo da requisição  
-- **Span** → unidade individual de trabalho  
-- **TraceId** → identifica toda a requisição  
-- **SpanId** → identifica um trecho específico  
+- **Trace** → conjunto completo da requisição
+- **Span** → unidade individual de trabalho
+- **TraceId** → identifica toda a requisição
+- **SpanId** → identifica um trecho específico
 
 ---
 
@@ -286,8 +286,8 @@ Endpoints:
 
 ### Diferença:
 
-- **Liveness** → aplicação está viva?  
-- **Readiness** → está pronta para receber tráfego?  
+- **Liveness** → aplicação está viva?
+- **Readiness** → está pronta para receber tráfego?
 
 Essencial para ambientes Kubernetes.
 
@@ -328,7 +328,7 @@ Grafana permite dashboards com:
 ✔️ Configure sampling para tracing em produção  
 ✔️ Monitore latência, taxa de erro e consumo de recursos  
 ✔️ Configure readiness e liveness em ambientes cloud  
-✔️ Adicione tags às métricas para contexto (ex: status, endpoint, tipo)  
+✔️ Adicione tags às métricas para contexto (ex: status, endpoint, tipo)
 
 ---
 
@@ -338,16 +338,16 @@ Grafana permite dashboards com:
 ❌ Logs excessivos em produção  
 ❌ Tracing sem correlação com logs  
 ❌ Não monitorar dependências externas (DB, APIs, filas)  
-❌ Não proteger endpoints do Actuator  
+❌ Não proteger endpoints do Actuator
 
 ---
 
 # 📚 Referências
 
-- https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html  
-- https://micrometer.io/  
-- https://opentelemetry.io/  
-- https://www.baeldung.com/spring-boot-actuators  
+- https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html
+- https://micrometer.io/
+- https://opentelemetry.io/
+- https://www.baeldung.com/spring-boot-actuators
 
 ---
 
@@ -356,3 +356,10 @@ Grafana permite dashboards com:
 O Spring Boot fornece um ecossistema robusto e integrado para observabilidade, permitindo monitorar métricas, rastrear requisições distribuídas, registrar eventos estruturados e verificar a saúde da aplicação.
 
 Ao combinar **metrics + tracing + logging + health checks**, é possível construir sistemas resilientes, escaláveis e preparados para ambientes modernos de Cloud e microsserviços.
+
+---
+
+<p align="center">
+<b>Finalizada a Observabilidade (Metrics, Tracing e Logging) no Spring! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="21-clientes-http.md">Clientes HTTP e Integrações no Spring</a>
+</p>

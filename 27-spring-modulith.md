@@ -258,3 +258,10 @@ O Spring Modulith oferece um caminho pragmático e robusto para construir sistem
 - Preparados para escalar técnica e organizacionalmente
 
 Ele representa uma abordagem moderna para arquitetura corporativa Java, unindo disciplina arquitetural e simplicidade operacional.
+
+---
+
+<p align="center">
+<b>Finalizada a Spring Modulith (Monólitos Modulares)! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="28-spring-ai.md">Spring AI</a>
+</p>

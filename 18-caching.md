@@ -4,11 +4,11 @@
 
 Este capítulo aborda o suporte a **caching** no Spring Framework, incluindo:
 
-- Conceitos de cache  
-- Configuração de caches  
-- Anotações do Spring Cache  
-- Estratégias avançadas  
-- Boas práticas e armadilhas  
+- Conceitos de cache
+- Configuração de caches
+- Anotações do Spring Cache
+- Estratégias avançadas
+- Boas práticas e armadilhas
 
 O objetivo é melhorar **performance**, reduzir **acesso repetitivo a recursos** e aumentar a **escalabilidade** da aplicação.
 
@@ -20,16 +20,16 @@ O objetivo é melhorar **performance**, reduzir **acesso repetitivo a recursos**
 
 ## ✅ Benefícios
 
-- Redução de latência  
-- Menor carga em banco de dados e serviços externos  
-- Melhoria na experiência do usuário  
-- Maior escalabilidade  
+- Redução de latência
+- Menor carga em banco de dados e serviços externos
+- Melhoria na experiência do usuário
+- Maior escalabilidade
 
 ## ⚖️ Trade-offs
 
-- Possível inconsistência temporária (dados desatualizados)  
-- Consumo adicional de memória  
-- Complexidade na estratégia de invalidação  
+- Possível inconsistência temporária (dados desatualizados)
+- Consumo adicional de memória
+- Complexidade na estratégia de invalidação
 
 Caching deve ser aplicado com critério e estratégia clara de expiração.
 
@@ -78,9 +78,9 @@ public Pedido buscarPedido(Long id) {
 }
 ```
 
-- `"pedidos"` é o nome do cache  
-- Se o método for chamado novamente com o mesmo argumento, o resultado será retornado diretamente do cache  
-- O método **não será executado novamente** se o valor já estiver armazenado  
+- `"pedidos"` é o nome do cache
+- Se o método for chamado novamente com o mesmo argumento, o resultado será retornado diretamente do cache
+- O método **não será executado novamente** se o valor já estiver armazenado
 
 ---
 
@@ -244,11 +244,11 @@ Expressões suportadas:
 
 # ⚠️ Armadilhas Comuns
 
-- ❌ *Self-invocation*: chamadas internas não passam pelo proxy  
-- ❌ Métodos `private`, `final` ou `static` não são interceptados  
-- ❌ Cache sem TTL pode crescer indefinidamente  
-- ❌ Falta de limite de tamanho pode gerar consumo excessivo de memória  
-- ❌ Dados sensíveis armazenados sem proteção  
+- ❌ _Self-invocation_: chamadas internas não passam pelo proxy
+- ❌ Métodos `private`, `final` ou `static` não são interceptados
+- ❌ Cache sem TTL pode crescer indefinidamente
+- ❌ Falta de limite de tamanho pode gerar consumo excessivo de memória
+- ❌ Dados sensíveis armazenados sem proteção
 
 ---
 
@@ -268,10 +268,10 @@ management:
 
 Com **Micrometer**, é possível monitorar:
 
-- Cache hits  
-- Cache misses  
-- Tempo médio de acesso  
-- Taxa de acerto  
+- Cache hits
+- Cache misses
+- Tempo médio de acesso
+- Taxa de acerto
 
 Monitoramento é essencial para validar se o cache está realmente trazendo benefício.
 
@@ -285,16 +285,16 @@ Monitoramento é essencial para validar se o cache está realmente trazendo bene
 ✔️ Evite cachear dados extremamente voláteis  
 ✔️ Combine cache com monitoramento  
 ✔️ Teste cenários de expiração e invalidação  
-✔️ Não utilize cache como substituto de consistência transacional  
+✔️ Não utilize cache como substituto de consistência transacional
 
 ---
 
 # 📚 Referências
 
-- https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#cache  
-- https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.caching  
-- https://www.baeldung.com/spring-cache-tutorial  
-- https://www.baeldung.com/guide-to-spring-cache  
+- https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#cache
+- https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.caching
+- https://www.baeldung.com/spring-cache-tutorial
+- https://www.baeldung.com/guide-to-spring-cache
 
 ---
 
@@ -305,3 +305,10 @@ O Spring Cache permite desacoplar a lógica de caching do código de negócio, o
 Quando bem configurado — com TTL, limites, monitoramento e estratégia de invalidação — o cache melhora significativamente a performance e a escalabilidade da aplicação.
 
 Caching não é apenas otimização. É uma decisão arquitetural.
+
+---
+
+<p align="center">
+<b>Finalizada a Caching no Spring! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="19-agendamento-async.md">Agendamento de Tarefas e Execução Assíncrona no Spring</a>
+</p>

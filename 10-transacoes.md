@@ -57,15 +57,15 @@ Define como métodos transacionais se comportam quando chamados dentro de outra 
 
 ## 🔧 Principais modos
 
-| Propagation      | Comportamento |
-|------------------|--------------|
-| REQUIRED         | Usa a transação existente ou cria uma nova |
-| REQUIRES_NEW     | Suspende a atual e cria uma nova |
-| SUPPORTS         | Usa se existir, senão executa sem |
-| MANDATORY        | Exige transação existente |
-| NOT_SUPPORTED    | Executa sem transação |
-| NEVER            | Falha se houver transação |
-| NESTED           | Cria subtransação (se suportado) |
+| Propagation   | Comportamento                              |
+| ------------- | ------------------------------------------ |
+| REQUIRED      | Usa a transação existente ou cria uma nova |
+| REQUIRES_NEW  | Suspende a atual e cria uma nova           |
+| SUPPORTS      | Usa se existir, senão executa sem          |
+| MANDATORY     | Exige transação existente                  |
+| NOT_SUPPORTED | Executa sem transação                      |
+| NEVER         | Falha se houver transação                  |
+| NESTED        | Cria subtransação (se suportado)           |
 
 ### 🔸 Exemplo
 
@@ -84,12 +84,12 @@ Define o nível de isolamento entre transações concorrentes.
 
 ## 🔧 Níveis
 
-| Isolation        | Garante evitar |
-|------------------|---------------|
-| READ_UNCOMMITTED | Nenhum |
-| READ_COMMITTED   | Dirty reads |
+| Isolation        | Garante evitar       |
+| ---------------- | -------------------- |
+| READ_UNCOMMITTED | Nenhum               |
+| READ_COMMITTED   | Dirty reads          |
 | REPEATABLE_READ  | Non-repeatable reads |
-| SERIALIZABLE     | Phantom reads |
+| SERIALIZABLE     | Phantom reads        |
 
 ### 🔸 Exemplo
 
@@ -345,3 +345,10 @@ void devePersistirDados() {
 O gerenciamento de transações no Spring é poderoso, flexível e profundamente integrado ao ecossistema. Contudo, seu uso eficaz exige compreensão dos mecanismos internos, especialmente proxies, propagação, isolamento e rollback.
 
 Dominar transações é essencial para construir sistemas consistentes, resilientes e escaláveis, especialmente em ambientes distribuídos e altamente concorrentes.
+
+---
+
+<p align="center">
+<b>Finalizada a Transações com Spring! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="11-eventos-mensageria-streaming.md">Eventos, Mensageria e Streaming</a>
+</p>

@@ -274,3 +274,10 @@ O Spring AI representa a convergência entre:
 - Observabilidade, segurança e governança
 
 Ele permite que equipes construam aplicações de IA robustas, seguras, escaláveis e alinhadas às boas práticas do ecossistema Spring — transformando IA de experimento em infraestrutura estratégica.
+
+---
+
+<p align="center">
+<b>Finalizada a Spring AI! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="29-cli.md">Aplicações de Linha de Comando (Spring Shell e Spring Boot CLI)</a>
+</p>

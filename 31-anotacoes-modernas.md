@@ -710,3 +710,10 @@ public class PedidoCriadoEvent {}
 As anotações modernas do Spring constituem a base do desenvolvimento produtivo, seguro, modular e observável.
 
 Quando combinadas com boas práticas arquiteturais, permitem construir aplicações robustas, escaláveis e alinhadas aos padrões atuais do ecossistema Java com **Spring Boot 3+, Java 17/21+ e arquitetura moderna**.
+
+---
+
+<p align="center">
+<b>Finalizada a Anotações Modernas no Spring! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="32-boas-praticas.md">Boas Práticas no Desenvolvimento com Spring</a>
+</p>

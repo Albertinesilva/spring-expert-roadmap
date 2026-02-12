@@ -316,15 +316,15 @@ public Flux<Usuario> usuarioCriado() {
 
 ## 🌐 GraphQL vs REST
 
-| Critério         | REST            | GraphQL                    |
-|------------------|-----------------|----------------------------|
-| Endpoints        | Múltiplos       | Normalmente único          |
-| Over-fetching    | Comum           | Evitado                    |
-| Under-fetching   | Comum           | Evitado                    |
-| Versionamento    | Explícito       | Implícito por schema       |
-| Tipagem          | Fraca           | Forte (schema)             |
-| Cache HTTP       | Simples         | Mais complexo              |
-| Complexidade     | Menor           | Maior                      |
+| Critério       | REST      | GraphQL              |
+| -------------- | --------- | -------------------- |
+| Endpoints      | Múltiplos | Normalmente único    |
+| Over-fetching  | Comum     | Evitado              |
+| Under-fetching | Comum     | Evitado              |
+| Versionamento  | Explícito | Implícito por schema |
+| Tipagem        | Fraca     | Forte (schema)       |
+| Cache HTTP     | Simples   | Mais complexo        |
+| Complexidade   | Menor     | Maior                |
 
 ---
 
@@ -376,3 +376,12 @@ type Usuario {
 O Spring GraphQL oferece uma abordagem moderna, flexível e fortemente tipada para construção de APIs orientadas a dados. Seu uso eficaz exige domínio de schema design, resolvers, segurança, performance e observabilidade.
 
 Em arquiteturas modernas, GraphQL não substitui necessariamente REST, mas complementa-o, oferecendo maior expressividade, eficiência de rede e controle do cliente sobre os dados retornados.
+
+Com as práticas e padrões corretos, o Spring GraphQL pode ser uma poderosa ferramenta no arsenal de desenvolvimento de APIs. Explore, experimente e adapte conforme as necessidades do seu projeto!
+
+---
+
+<p align="center">
+<b>Finalizada a Spring GraphQL! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="09-persistencia-spring-data.md">Persistência e Exploração de Dados com Spring Data</a>
+</p>

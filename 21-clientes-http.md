@@ -261,3 +261,10 @@ A escolha depende do contexto:
 - Código mais declarativo → **HttpExchange**
 
 Selecionar corretamente a ferramenta garante melhor desempenho, escalabilidade e observabilidade em sistemas distribuídos.
+
+---
+
+<p align="center">
+<b>Finalizada a Clientes HTTP e Integrações no Spring! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="22-webflux.md">Programação Reativa com Spring WebFlux</a>
+</p>

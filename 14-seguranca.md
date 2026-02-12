@@ -408,3 +408,10 @@ O **Spring Security** fornece uma das infraestruturas de segurança mais complet
 Dominar segurança no Spring é compreender **filtros, proxies, tokens, políticas, contexto e identidade** — não apenas anotações.
 
 Segurança não é um recurso. É uma arquitetura.
+
+---
+
+<p align="center">
+<b>Finalizada a Segurança e Identidade com Spring! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="15-testes.md">Testes no Ecossistema Spring</a>
+</p>

@@ -216,7 +216,7 @@ Encaminham mensagens para diferentes canais com base em critérios.
 @Bean
 public IntegrationFlow routerFlow() {
     return IntegrationFlows.from("entrada")
-        .route(String.class, 
+        .route(String.class,
             s -> s.startsWith("A") ? "canalA" : "canalB")
         .get();
 }
@@ -232,7 +232,7 @@ Conecta um método Java ao fluxo de mensagens.
 @Bean
 @ServiceActivator(inputChannel = "entrada", outputChannel = "saida")
 public MessageHandler processador() {
-    return message -> 
+    return message ->
         System.out.println("Processando: " + message.getPayload());
 }
 ```
@@ -360,7 +360,7 @@ public IntegrationFlow httpInboundFlow() {
         .from(Http.inboundGateway("/api/integracao")
             .requestMapping(m -> m.methods(HttpMethod.POST))
             .requestPayloadType(String.class))
-        .handle((payload, headers) -> 
+        .handle((payload, headers) ->
             "Recebido: " + payload)
         .get();
 }
@@ -452,3 +452,10 @@ class IntegrationFlowTest {
 Spring Integration fornece uma plataforma madura e poderosa para orquestrar comunicações complexas entre sistemas heterogêneos. Ao aplicar os padrões EIP com as abstrações do Spring, é possível construir soluções robustas, escaláveis e altamente observáveis, fundamentais para ambientes corporativos modernos e arquiteturas distribuídas.
 
 Dominar Spring Integration significa dominar a arte de conectar sistemas com segurança, resiliência e elegância arquitetural.
+
+---
+
+<p align="center">
+<b>Finalizada a Integração de Sistemas com Spring Integration! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="13-spring-state-machine.md">Máquinas de Estado com Spring State Machine</a>
+</p>

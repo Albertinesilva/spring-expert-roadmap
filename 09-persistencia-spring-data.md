@@ -391,3 +391,10 @@ class UsuarioReactiveRepositoryTest {
 O Spring Data oferece uma plataforma poderosa e unificada para acesso a dados, permitindo que desenvolvedores foquem no domínio em vez de infraestrutura. Entretanto, seu uso eficaz exige compreensão de seus mecanismos internos, limitações e implicações arquiteturais.
 
 Dominar Spring Data é fundamental para construir aplicações escaláveis, resilientes e orientadas a dados em ambientes modernos, distribuídos e cloud-native.
+
+---
+
+<p align="center">
+<b>Finalizada a Persistência e Exploração de Dados com Spring Data! 🏁</b><br>
+  <b>Próximo Nível: 👉 </b> <a href="10-transacoes.md">Transações com Spring</a>
+</p>
