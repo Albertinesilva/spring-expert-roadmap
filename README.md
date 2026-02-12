@@ -7,12 +7,15 @@
 
 Um guia técnico, acadêmico e didático sobre o **Spring Framework e seu ecossistema**, projetado para desenvolvedores que desejam ir além do uso superficial e compreender o funcionamento interno, arquitetura, performance e operação de aplicações Java modernas.
 
+Este repositório apresenta uma construção modular e técnica do ecossistema Spring, documentando seus principais componentes, arquiteturas e práticas, com foco em funcionamento interno, uso avançado e aplicações reais.
+
 ---
 
 ## 🎯 Objetivo
 
 Este repositório tem como propósito:
 
+- Construir uma visão modular, técnica e aprofundada do ecossistema Spring, documentando seus principais componentes e arquiteturas.
 - Servir como base sólida de estudo contínuo sobre o Spring.
 - Atuar como referência técnica para projetos reais.
 - Consolidar conhecimento avançado em arquitetura, performance, segurança e observabilidade.
@@ -181,3 +184,4 @@ Veja o arquivo `CONTRIBUTING.md` (se aplicável) ou abra uma issue.
 📜 Licença
 
 Este projeto está licenciado sob a licença MIT. Consulte o arquivo `LICENSE` para mais detalhes.
+
